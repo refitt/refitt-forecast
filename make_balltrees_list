@@ -1,0 +1,3 @@
+python -c "import refitt; refitt.make_balltrees(58)"
+python -c "import refitt; refitt.make_balltrees(59)"
+python -c "import refitt; refitt.make_balltrees(60)"
