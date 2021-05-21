@@ -67,6 +67,7 @@ def get_band_info(survey) -> list:
   """
   if survey=='ZTF_public':
     band_list=[1,2]
+  #this option is not fully supported
   elif survey=='ZTF_full':
     band_list=[1,2,3]
   return band_list
@@ -98,7 +99,7 @@ def make_balltrees(phase,survey='ZTF_public'):
 class Transient():
   def __init__(self,ID:str,LC:pd.DataFrame,
                current_mjd:float=Time(datetime.today()).mjd,survey:str='ZTF_public',
-               out_dir='.'):
+               out_dir=refitt_loc):
     """
     REFITT LC class and supporting methods
     
@@ -116,7 +117,6 @@ class Transient():
     survey: 'ZTF_public'
             currently only type that will work
     out_dir: directory to write forecast json and png to. 
-             By default it is the directory from which this code is run
 
     Examples:
     ---------
@@ -154,7 +154,7 @@ class Transient():
     if self.status<1:
       try: self.LC_GP=self.fit_GP()
       except ValueError: 
-        print('GP fit failed. I cannot proceed.')
+        print('Gaussian Process fit failed. I cannot proceed.')
         self.status=3 #GP fail when only one data point
 
   @classmethod
@@ -170,7 +170,7 @@ class Transient():
 
       Example:
       --------
-      To make forecast for system time for fname and place outputs in current directory
+      To make forecast for system time for fname and place outputs in directory where file is
       >>> refitt.Transient.from_file(fname).predict_LC()
 
       """

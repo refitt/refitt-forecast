@@ -8,7 +8,7 @@ import subprocess
 dir_path = os.path.dirname(os.path.realpath(__file__))
 qname='physics'
 threads=24
-instrument='ZTF_public'#, ZTF_full
+instrument='ZTF_public'
 runs=''
 sc_name='find_kNN'
 for tst in range(52,refitt.window+1):
