@@ -1,5 +1,3 @@
-## From bright SN catalog events that were reported discovered by ZTF
-
 #dropping less than 4 data points
 # or data in only one band
 # not converting events with no rise

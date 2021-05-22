@@ -1,5 +1,5 @@
 # REFITT
-*Recommender Engine For Intelligent Transient Tracking*
+**Recommender Engine For Intelligent Transient Tracking**
 
 ## Setup
 ### Packages/Dependencies
@@ -8,6 +8,8 @@
 - Keras
 - sncosmo
 - tslearn (optional)
+
+in refitt.py change refitt_loc to the path containing itself
 
 ### Generate Library
 files in <class_name>/train/ has json files for reference LCs
