@@ -1,4 +1,12 @@
-data/
+data/*
+data/Ia
+data/Ib
+data/Ic
+data/Ic-BL
+data/II
+data/IIb
+data/IIn
+data/SLSN
 test/
 ZTF/
 sncosmo/

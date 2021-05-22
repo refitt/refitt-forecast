@@ -15,7 +15,7 @@ mpl.use('agg')
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 #support
-from tslearn import metrics
+#from tslearn import metrics
 import george
 from scipy import stats, interpolate, spatial, signal
 from scipy.optimize import minimize
@@ -580,7 +580,7 @@ class Transient():
     plt.close()
     return
  
-#deprecated
+#deprecated for ZTF: uncomment tslearn.metrics to use
 def align_DTW(obs_LC,df_LC_ref,instrument):
   y_offset=[]
   x_offset=[]

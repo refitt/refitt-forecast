@@ -1,12 +1,12 @@
 # REFITT
-## Recommender Engine For Intelligent Transient Tracking
+### Recommender Engine For Intelligent Transient Tracking
 
 ## Setup
-### Dependencies
+### Packages/Dependencies
 - sklearn, astropy
 - George
 - Keras
-- tslearn
+- tslearn (optional)
 
 ### Generate Library
 files in <class_name>/train/ has json files for reference LCs
@@ -40,14 +40,14 @@ Priority lists are in a deeper subfolder /priorty
 
 Note: prioritize_old.py is legacy and will be removed in the future
 
-#Disclaimer:
+# Disclaimer:
 This code is not pip or conda installable due to extensive setup needed.
 
 While I have tried my best to document all steps to make sure REFITT works on any machine, I have only ever set it up on mine. 
 If you are running into errors while following the steps, please do reach out and I will help fix it and push an update. 
 Alternately, if you do end up fixing the issue yourself, please share your fix anyway or send a pull request for the benefit of everyone.
 
-#Notes:
+# Notes:
 ### Major changes from Sravan+2020:
 - predicting class and forecasting on class
 - loss is error on full forecast
@@ -57,7 +57,7 @@ Alternately, if you do end up fixing the issue yourself, please share your fix a
 - Forecasts for bright transients and decaying transients is not good
 - System uses LC only - host information would help (redshift+env properties)
 
-## Laundry list:
+### Laundry list:
 - Use spec class or probabilistic class
 - Use host info (redshift, offset, morphology)
 
