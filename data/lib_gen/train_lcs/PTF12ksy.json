@@ -1,0 +1,366 @@
+{
+    "0": {
+        "mjd": 56208.86129999999,
+        "mag": 20.98,
+        "mag_err": 0.26,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "1": {
+        "mjd": 56208.897400000125,
+        "mag": 21.89,
+        "mag_err": 0.36,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "2": {
+        "mjd": 56242.953600000124,
+        "mag": 18.39,
+        "mag_err": 0.08,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "3": {
+        "mjd": 56242.95470000012,
+        "mag": 18.66,
+        "mag_err": 0.07,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "4": {
+        "mjd": 56242.98739999998,
+        "mag": 18.38,
+        "mag_err": 0.1,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "5": {
+        "mjd": 56242.988599999815,
+        "mag": 18.76,
+        "mag_err": 0.1,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "6": {
+        "mjd": 56244.89680000021,
+        "mag": 18.19,
+        "mag_err": 0.06,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "7": {
+        "mjd": 56244.928799999885,
+        "mag": 18.27,
+        "mag_err": 0.06,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "8": {
+        "mjd": 56244.92989999987,
+        "mag": 18.55,
+        "mag_err": 0.08,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "9": {
+        "mjd": 56244.95949999988,
+        "mag": 18.47,
+        "mag_err": 0.07,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "10": {
+        "mjd": 56238.93069999991,
+        "mag": 19.12,
+        "mag_err": 0.08,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "11": {
+        "mjd": 56245.73359999992,
+        "mag": 18.43,
+        "mag_err": 0.07,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "12": {
+        "mjd": 56251.778599999845,
+        "mag": 18.05,
+        "mag_err": 0.04,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "13": {
+        "mjd": 56252.7034,
+        "mag": 18.02,
+        "mag_err": 0.04,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "14": {
+        "mjd": 56253.76550000021,
+        "mag": 18.02,
+        "mag_err": 0.04,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "15": {
+        "mjd": 56254.71829999983,
+        "mag": 18.09,
+        "mag_err": 0.04,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "16": {
+        "mjd": 56255.78929999984,
+        "mag": 18.13,
+        "mag_err": 0.04,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "17": {
+        "mjd": 56256.697300000116,
+        "mag": 18.24,
+        "mag_err": 0.06,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "18": {
+        "mjd": 56257.79089999991,
+        "mag": 18.28,
+        "mag_err": 0.06,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "19": {
+        "mjd": 56258.71409999998,
+        "mag": 18.28,
+        "mag_err": 0.05,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "20": {
+        "mjd": 56259.9057,
+        "mag": 18.28,
+        "mag_err": 0.1,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "21": {
+        "mjd": 56266.829899999786,
+        "mag": 18.86,
+        "mag_err": 0.44,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "22": {
+        "mjd": 56267.6642,
+        "mag": 19.12,
+        "mag_err": 0.07,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "23": {
+        "mjd": 56268.70970000001,
+        "mag": 19.26,
+        "mag_err": 0.12,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "24": {
+        "mjd": 56269.660999999855,
+        "mag": 19.2,
+        "mag_err": 0.07,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "25": {
+        "mjd": 56270.65789999999,
+        "mag": 19.33,
+        "mag_err": 0.13,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "26": {
+        "mjd": 56271.72509999992,
+        "mag": 19.43,
+        "mag_err": 0.14,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "27": {
+        "mjd": 56272.735400000114,
+        "mag": 19.43,
+        "mag_err": 0.14,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "28": {
+        "mjd": 56273.66889999993,
+        "mag": 19.64,
+        "mag_err": 0.15,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "29": {
+        "mjd": 56273.907699999865,
+        "mag": 19.63,
+        "mag_err": 0.16,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "30": {
+        "mjd": 56282.62229999993,
+        "mag": 20.23,
+        "mag_err": 0.22,
+        "passband": 1,
+        "locus_id": "PTF12ksy"
+    },
+    "31": {
+        "mjd": 56238.92909999984,
+        "mag": 19.11,
+        "mag_err": 0.11,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "32": {
+        "mjd": 56239.832899999805,
+        "mag": 19.02,
+        "mag_err": 0.09,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "33": {
+        "mjd": 56245.730299999945,
+        "mag": 18.58,
+        "mag_err": 0.07,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "34": {
+        "mjd": 56246.70930000021,
+        "mag": 18.33,
+        "mag_err": 0.06,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "35": {
+        "mjd": 56251.775400000166,
+        "mag": 17.94,
+        "mag_err": 0.05,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "36": {
+        "mjd": 56252.69189999998,
+        "mag": 17.9,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "37": {
+        "mjd": 56253.761899999816,
+        "mag": 17.92,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "38": {
+        "mjd": 56254.70850000018,
+        "mag": 17.95,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "39": {
+        "mjd": 56255.785999999855,
+        "mag": 18.0,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "40": {
+        "mjd": 56256.681299999815,
+        "mag": 18.08,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "41": {
+        "mjd": 56257.78649999993,
+        "mag": 18.12,
+        "mag_err": 0.05,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "42": {
+        "mjd": 56258.6978000002,
+        "mag": 18.26,
+        "mag_err": 0.09,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "43": {
+        "mjd": 56266.82739999984,
+        "mag": 18.91,
+        "mag_err": 0.07,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "44": {
+        "mjd": 56267.661700000055,
+        "mag": 16.93,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "45": {
+        "mjd": 56268.70129999983,
+        "mag": 18.85,
+        "mag_err": 0.07,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "46": {
+        "mjd": 56269.64690000005,
+        "mag": 18.96,
+        "mag_err": 0.11,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "47": {
+        "mjd": 56270.643800000194,
+        "mag": 19.01,
+        "mag_err": 0.12,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "48": {
+        "mjd": 56271.72259999998,
+        "mag": 19.3,
+        "mag_err": 0.17,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "49": {
+        "mjd": 56272.73279999988,
+        "mag": 19.28,
+        "mag_err": 0.11,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "50": {
+        "mjd": 56273.66639999999,
+        "mag": 19.45,
+        "mag_err": 0.2,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    },
+    "51": {
+        "mjd": 56273.89220000012,
+        "mag": 19.54,
+        "mag_err": 0.18,
+        "passband": 2,
+        "locus_id": "PTF12ksy"
+    }
+}

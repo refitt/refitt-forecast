@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58269.25,
+        "passband": 2,
+        "mag": 18.6542,
+        "mag_err": 0.084342,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "1": {
+        "mjd": 58789.5077662,
+        "passband": 1,
+        "mag": 19.8154,
+        "mag_err": 0.205754,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "2": {
+        "mjd": 58849.5013426,
+        "passband": 1,
+        "mag": 20.3256,
+        "mag_err": 0.228415,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "3": {
+        "mjd": 58852.541273099996,
+        "passband": 1,
+        "mag": 19.9923,
+        "mag_err": 0.159449,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "4": {
+        "mjd": 58874.37739580001,
+        "passband": 1,
+        "mag": 19.6144,
+        "mag_err": 0.192625,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "5": {
+        "mjd": 58898.416053199995,
+        "passband": 1,
+        "mag": 20.0164,
+        "mag_err": 0.22067199999999998,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "6": {
+        "mjd": 58899.41583330001,
+        "passband": 1,
+        "mag": 19.991,
+        "mag_err": 0.146281,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "7": {
+        "mjd": 58900.315104199995,
+        "passband": 1,
+        "mag": 19.9794,
+        "mag_err": 0.22184099999999998,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "8": {
+        "mjd": 58904.2752546,
+        "passband": 1,
+        "mag": 20.2052,
+        "mag_err": 0.254345,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "9": {
+        "mjd": 58911.4021528,
+        "passband": 1,
+        "mag": 19.8941,
+        "mag_err": 0.203353,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "10": {
+        "mjd": 58964.20591440001,
+        "passband": 1,
+        "mag": 19.875999999999998,
+        "mag_err": 0.145788,
+        "locus_id": "ZTF18aarcypa"
+    },
+    "11": {
+        "mjd": 58965.2428125,
+        "passband": 1,
+        "mag": 19.7252,
+        "mag_err": 0.14363499999999998,
+        "locus_id": "ZTF18aarcypa"
+    }
+}

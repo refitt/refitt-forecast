@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58885.542580999994,
+        "passband": 2,
+        "mag": 19.9091,
+        "mag_err": 0.200999,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "1": {
+        "mjd": 58894.52751159999,
+        "passband": 2,
+        "mag": 18.9466,
+        "mag_err": 0.10444200000000001,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "2": {
+        "mjd": 58894.5615625,
+        "passband": 1,
+        "mag": 19.3931,
+        "mag_err": 0.160156,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "3": {
+        "mjd": 58898.53875,
+        "passband": 2,
+        "mag": 18.7881,
+        "mag_err": 0.086451,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "4": {
+        "mjd": 58904.5228588,
+        "passband": 2,
+        "mag": 18.7811,
+        "mag_err": 0.138426,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "5": {
+        "mjd": 58904.549768499994,
+        "passband": 1,
+        "mag": 19.8124,
+        "mag_err": 0.203355,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "6": {
+        "mjd": 58908.51523150001,
+        "passband": 2,
+        "mag": 19.0393,
+        "mag_err": 0.121151,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "7": {
+        "mjd": 58911.51778940001,
+        "passband": 2,
+        "mag": 19.1338,
+        "mag_err": 0.12701300000000001,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "8": {
+        "mjd": 58911.5397454,
+        "passband": 1,
+        "mag": 20.491999999999997,
+        "mag_err": 0.267868,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "9": {
+        "mjd": 58914.51810190001,
+        "passband": 2,
+        "mag": 19.2932,
+        "mag_err": 0.114004,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "10": {
+        "mjd": 58936.4421181,
+        "passband": 2,
+        "mag": 20.113,
+        "mag_err": 0.241331,
+        "locus_id": "ZTF20aamdyln"
+    },
+    "11": {
+        "mjd": 58965.3343171,
+        "passband": 2,
+        "mag": 20.3994,
+        "mag_err": 0.20824099999999998,
+        "locus_id": "ZTF20aamdyln"
+    }
+}

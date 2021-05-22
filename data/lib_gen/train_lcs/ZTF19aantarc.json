@@ -1,0 +1,135 @@
+{
+    "0": {
+        "mjd": 58572.3355324,
+        "passband": 1,
+        "mag": 19.9274,
+        "mag_err": 0.196679,
+        "locus_id": "ZTF19aantarc"
+    },
+    "1": {
+        "mjd": 58572.35761569999,
+        "passband": 2,
+        "mag": 20.1066,
+        "mag_err": 0.206808,
+        "locus_id": "ZTF19aantarc"
+    },
+    "2": {
+        "mjd": 58575.3156597,
+        "passband": 1,
+        "mag": 19.4851,
+        "mag_err": 0.135621,
+        "locus_id": "ZTF19aantarc"
+    },
+    "3": {
+        "mjd": 58575.3933681,
+        "passband": 2,
+        "mag": 19.5351,
+        "mag_err": 0.208263,
+        "locus_id": "ZTF19aantarc"
+    },
+    "4": {
+        "mjd": 58580.30120369999,
+        "passband": 1,
+        "mag": 18.9536,
+        "mag_err": 0.113549,
+        "locus_id": "ZTF19aantarc"
+    },
+    "5": {
+        "mjd": 58580.344710599995,
+        "passband": 2,
+        "mag": 19.1203,
+        "mag_err": 0.13810899999999998,
+        "locus_id": "ZTF19aantarc"
+    },
+    "6": {
+        "mjd": 58583.279016199995,
+        "passband": 2,
+        "mag": 18.9952,
+        "mag_err": 0.111603,
+        "locus_id": "ZTF19aantarc"
+    },
+    "7": {
+        "mjd": 58583.35927080001,
+        "passband": 1,
+        "mag": 18.9085,
+        "mag_err": 0.145751,
+        "locus_id": "ZTF19aantarc"
+    },
+    "8": {
+        "mjd": 58586.27333330001,
+        "passband": 1,
+        "mag": 18.8795,
+        "mag_err": 0.122329,
+        "locus_id": "ZTF19aantarc"
+    },
+    "9": {
+        "mjd": 58586.3320255,
+        "passband": 2,
+        "mag": 19.0141,
+        "mag_err": 0.119676,
+        "locus_id": "ZTF19aantarc"
+    },
+    "10": {
+        "mjd": 58589.2589352,
+        "passband": 2,
+        "mag": 18.9306,
+        "mag_err": 0.139222,
+        "locus_id": "ZTF19aantarc"
+    },
+    "11": {
+        "mjd": 58592.293669000006,
+        "passband": 2,
+        "mag": 19.0582,
+        "mag_err": 0.202587,
+        "locus_id": "ZTF19aantarc"
+    },
+    "12": {
+        "mjd": 58592.42135419999,
+        "passband": 1,
+        "mag": 18.9911,
+        "mag_err": 0.243146,
+        "locus_id": "ZTF19aantarc"
+    },
+    "13": {
+        "mjd": 58596.23335650001,
+        "passband": 1,
+        "mag": 19.5899,
+        "mag_err": 0.18596300000000002,
+        "locus_id": "ZTF19aantarc"
+    },
+    "14": {
+        "mjd": 58596.2582523,
+        "passband": 2,
+        "mag": 19.2262,
+        "mag_err": 0.109082,
+        "locus_id": "ZTF19aantarc"
+    },
+    "15": {
+        "mjd": 58600.235416699994,
+        "passband": 1,
+        "mag": 20.1289,
+        "mag_err": 0.20774600000000001,
+        "locus_id": "ZTF19aantarc"
+    },
+    "16": {
+        "mjd": 58600.277037,
+        "passband": 2,
+        "mag": 19.3903,
+        "mag_err": 0.12389000000000001,
+        "locus_id": "ZTF19aantarc"
+    },
+    "17": {
+        "mjd": 58606.2112847,
+        "passband": 2,
+        "mag": 19.635,
+        "mag_err": 0.12256700000000001,
+        "locus_id": "ZTF19aantarc"
+    },
+    "18": {
+        "mjd": 58612.24792819999,
+        "passband": 2,
+        "mag": 19.8832,
+        "mag_err": 0.138457,
+        "locus_id": "ZTF19aantarc"
+    }
+}

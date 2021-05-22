@@ -1,0 +1,128 @@
+{
+    "0": {
+        "mjd": 58343.15954859999,
+        "passband": 2,
+        "mag": 19.8214,
+        "mag_err": 0.137622,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "1": {
+        "mjd": 58343.179351900006,
+        "passband": 1,
+        "mag": 20.0546,
+        "mag_err": 0.18773499999999999,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "2": {
+        "mjd": 58346.1559838,
+        "passband": 1,
+        "mag": 19.6053,
+        "mag_err": 0.195912,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "3": {
+        "mjd": 58346.1764352,
+        "passband": 2,
+        "mag": 19.4545,
+        "mag_err": 0.111909,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "4": {
+        "mjd": 58349.16107640001,
+        "passband": 1,
+        "mag": 19.383,
+        "mag_err": 0.169445,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "5": {
+        "mjd": 58349.2360648,
+        "passband": 2,
+        "mag": 19.1201,
+        "mag_err": 0.11134200000000001,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "6": {
+        "mjd": 58352.1584722,
+        "passband": 1,
+        "mag": 19.0977,
+        "mag_err": 0.163054,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "7": {
+        "mjd": 58352.221354199995,
+        "passband": 2,
+        "mag": 18.9565,
+        "mag_err": 0.0949285,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "8": {
+        "mjd": 58356.23920140001,
+        "passband": 2,
+        "mag": 18.959,
+        "mag_err": 0.120511,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "9": {
+        "mjd": 58359.220335599995,
+        "passband": 2,
+        "mag": 18.871,
+        "mag_err": 0.12278499999999999,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "10": {
+        "mjd": 58362.139016199995,
+        "passband": 2,
+        "mag": 19.1636,
+        "mag_err": 0.0989296,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "11": {
+        "mjd": 58362.194537,
+        "passband": 1,
+        "mag": 19.9434,
+        "mag_err": 0.160778,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "12": {
+        "mjd": 58365.143553199996,
+        "passband": 2,
+        "mag": 19.4233,
+        "mag_err": 0.10886300000000002,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "13": {
+        "mjd": 58365.234838,
+        "passband": 1,
+        "mag": 20.2301,
+        "mag_err": 0.20289200000000002,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "14": {
+        "mjd": 58368.16,
+        "passband": 2,
+        "mag": 19.5575,
+        "mag_err": 0.0914659,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "15": {
+        "mjd": 58371.160821800004,
+        "passband": 2,
+        "mag": 19.6997,
+        "mag_err": 0.116166,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "16": {
+        "mjd": 58374.1321296,
+        "passband": 2,
+        "mag": 19.7251,
+        "mag_err": 0.12363699999999998,
+        "locus_id": "ZTF18abmjyvo"
+    },
+    "17": {
+        "mjd": 58381.1441898,
+        "passband": 2,
+        "mag": 20.1025,
+        "mag_err": 0.193772,
+        "locus_id": "ZTF18abmjyvo"
+    }
+}

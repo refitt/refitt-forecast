@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58572.18738430001,
+        "passband": 1,
+        "mag": 19.836,
+        "mag_err": 0.284796,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "1": {
+        "mjd": 58575.2769907,
+        "passband": 1,
+        "mag": 19.4365,
+        "mag_err": 0.10398699999999998,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "2": {
+        "mjd": 58581.2144329,
+        "passband": 1,
+        "mag": 18.6949,
+        "mag_err": 0.091045,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "3": {
+        "mjd": 58581.23739580001,
+        "passband": 2,
+        "mag": 18.8516,
+        "mag_err": 0.0860412,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "4": {
+        "mjd": 58584.216111099995,
+        "passband": 1,
+        "mag": 18.6277,
+        "mag_err": 0.100876,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "5": {
+        "mjd": 58587.19488430001,
+        "passband": 1,
+        "mag": 18.6207,
+        "mag_err": 0.10260799999999999,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "6": {
+        "mjd": 58592.1776505,
+        "passband": 1,
+        "mag": 18.7042,
+        "mag_err": 0.13082,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "7": {
+        "mjd": 58592.235463,
+        "passband": 2,
+        "mag": 18.6226,
+        "mag_err": 0.09140160000000001,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "8": {
+        "mjd": 58596.180983800004,
+        "passband": 1,
+        "mag": 19.0097,
+        "mag_err": 0.0994839,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "9": {
+        "mjd": 58599.1561574,
+        "passband": 2,
+        "mag": 18.857,
+        "mag_err": 0.0939877,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "10": {
+        "mjd": 58608.2026852,
+        "passband": 1,
+        "mag": 20.0561,
+        "mag_err": 0.184576,
+        "locus_id": "ZTF19aaoaaap"
+    },
+    "11": {
+        "mjd": 58608.2403935,
+        "passband": 2,
+        "mag": 19.3426,
+        "mag_err": 0.146397,
+        "locus_id": "ZTF19aaoaaap"
+    }
+}

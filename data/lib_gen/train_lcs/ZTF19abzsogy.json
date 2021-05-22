@@ -1,0 +1,170 @@
+{
+    "0": {
+        "mjd": 58746.392303199995,
+        "passband": 1,
+        "mag": 18.9893,
+        "mag_err": 0.156682,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "1": {
+        "mjd": 58749.30035880001,
+        "passband": 2,
+        "mag": 18.671,
+        "mag_err": 0.086405,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "2": {
+        "mjd": 58749.3227546,
+        "passband": 1,
+        "mag": 18.7859,
+        "mag_err": 0.0927057,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "3": {
+        "mjd": 58756.4029051,
+        "passband": 1,
+        "mag": 18.8213,
+        "mag_err": 0.0953135,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "4": {
+        "mjd": 58759.35763890001,
+        "passband": 2,
+        "mag": 18.7199,
+        "mag_err": 0.074727,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "5": {
+        "mjd": 58759.40473380001,
+        "passband": 1,
+        "mag": 18.9385,
+        "mag_err": 0.0816977,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "6": {
+        "mjd": 58763.33636569999,
+        "passband": 2,
+        "mag": 18.8707,
+        "mag_err": 0.0913953,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "7": {
+        "mjd": 58763.39545140001,
+        "passband": 1,
+        "mag": 19.2138,
+        "mag_err": 0.12082899999999999,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "8": {
+        "mjd": 58764.1345949,
+        "passband": 2,
+        "mag": 18.9356,
+        "mag_err": 0.128485,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "9": {
+        "mjd": 58764.167951400006,
+        "passband": 1,
+        "mag": 19.1939,
+        "mag_err": 0.18641,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "10": {
+        "mjd": 58766.135011599996,
+        "passband": 2,
+        "mag": 18.9926,
+        "mag_err": 0.2068,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "11": {
+        "mjd": 58766.1673148,
+        "passband": 1,
+        "mag": 19.5264,
+        "mag_err": 0.363159,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "12": {
+        "mjd": 58768.1354051,
+        "passband": 2,
+        "mag": 18.9865,
+        "mag_err": 0.257008,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "13": {
+        "mjd": 58772.1361921,
+        "passband": 2,
+        "mag": 19.1311,
+        "mag_err": 0.263292,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "14": {
+        "mjd": 58774.136412,
+        "passband": 2,
+        "mag": 19.3081,
+        "mag_err": 0.182506,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "15": {
+        "mjd": 58774.164537,
+        "passband": 1,
+        "mag": 20.102999999999998,
+        "mag_err": 0.412232,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "16": {
+        "mjd": 58775.1361343,
+        "passband": 2,
+        "mag": 19.269000000000002,
+        "mag_err": 0.12056300000000002,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "17": {
+        "mjd": 58775.1646412,
+        "passband": 1,
+        "mag": 20.1665,
+        "mag_err": 0.234596,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "18": {
+        "mjd": 58777.136330999994,
+        "passband": 2,
+        "mag": 19.3161,
+        "mag_err": 0.13356700000000002,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "19": {
+        "mjd": 58777.1643171,
+        "passband": 1,
+        "mag": 20.2393,
+        "mag_err": 0.311434,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "20": {
+        "mjd": 58778.1365394,
+        "passband": 2,
+        "mag": 19.3527,
+        "mag_err": 0.13097,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "21": {
+        "mjd": 58779.136330999994,
+        "passband": 2,
+        "mag": 19.3922,
+        "mag_err": 0.151117,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "22": {
+        "mjd": 58783.13655090001,
+        "passband": 2,
+        "mag": 19.7414,
+        "mag_err": 0.197443,
+        "locus_id": "ZTF19abzsogy"
+    },
+    "23": {
+        "mjd": 58785.1361921,
+        "passband": 2,
+        "mag": 19.6539,
+        "mag_err": 0.154026,
+        "locus_id": "ZTF19abzsogy"
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58700.17074069999,
+        "passband": 2,
+        "mag": 19.7555,
+        "mag_err": 0.179832,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "1": {
+        "mjd": 58700.255625,
+        "passband": 1,
+        "mag": 19.9596,
+        "mag_err": 0.160522,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "2": {
+        "mjd": 58704.1792245,
+        "passband": 2,
+        "mag": 18.9769,
+        "mag_err": 0.0886304,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "3": {
+        "mjd": 58707.16879630001,
+        "passband": 2,
+        "mag": 18.668,
+        "mag_err": 0.0905408,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "4": {
+        "mjd": 58707.2696181,
+        "passband": 1,
+        "mag": 18.7577,
+        "mag_err": 0.115827,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "5": {
+        "mjd": 58716.186875,
+        "passband": 1,
+        "mag": 18.6614,
+        "mag_err": 0.0639774,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "6": {
+        "mjd": 58719.321666699994,
+        "passband": 2,
+        "mag": 18.5368,
+        "mag_err": 0.135196,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "7": {
+        "mjd": 58723.1701505,
+        "passband": 1,
+        "mag": 19.0956,
+        "mag_err": 0.091339,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "8": {
+        "mjd": 58723.32966440001,
+        "passband": 2,
+        "mag": 18.6827,
+        "mag_err": 0.0846855,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "9": {
+        "mjd": 58727.169351900004,
+        "passband": 1,
+        "mag": 19.4159,
+        "mag_err": 0.103902,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "10": {
+        "mjd": 58734.145544000006,
+        "passband": 2,
+        "mag": 19.1115,
+        "mag_err": 0.11574300000000001,
+        "locus_id": "ZTF19abnkrcd"
+    },
+    "11": {
+        "mjd": 58737.1877778,
+        "passband": 2,
+        "mag": 19.1174,
+        "mag_err": 0.16733800000000001,
+        "locus_id": "ZTF19abnkrcd"
+    }
+}

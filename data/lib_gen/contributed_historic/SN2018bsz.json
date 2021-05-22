@@ -1,0 +1,114 @@
+{
+    "0": {
+        "mjd": 58229.0,
+        "mag": 18.12,
+        "mag_err": 0.32,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "1": {
+        "mjd": 58257.0,
+        "mag": 16.17,
+        "mag_err": 0.05,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "2": {
+        "mjd": 58261.8,
+        "mag": 15.86,
+        "mag_err": 0.05,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "3": {
+        "mjd": 58263.8,
+        "mag": 15.67,
+        "mag_err": 0.04,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "4": {
+        "mjd": 58266.8,
+        "mag": 15.69,
+        "mag_err": 0.05,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "5": {
+        "mjd": 58270.5,
+        "mag": 15.8,
+        "mag_err": 0.02,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "6": {
+        "mjd": 58273.5,
+        "mag": 15.98,
+        "mag_err": 0.01,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "7": {
+        "mjd": 58275.3,
+        "mag": 16.1,
+        "mag_err": 0.01,
+        "passband": 1,
+        "locus_id": "SN2018bsz"
+    },
+    "8": {
+        "mjd": 58228.0,
+        "mag": 17.32,
+        "mag_err": 0.14,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "9": {
+        "mjd": 58257.0,
+        "mag": 16.07,
+        "mag_err": 0.05,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "10": {
+        "mjd": 58261.8,
+        "mag": 15.77,
+        "mag_err": 0.01,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "11": {
+        "mjd": 58264.0,
+        "mag": 15.59,
+        "mag_err": 0.02,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "12": {
+        "mjd": 58266.9,
+        "mag": 15.66,
+        "mag_err": 0.04,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "13": {
+        "mjd": 58270.5,
+        "mag": 15.63,
+        "mag_err": 0.01,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "14": {
+        "mjd": 58273.8,
+        "mag": 15.71,
+        "mag_err": 0.01,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    },
+    "15": {
+        "mjd": 58275.3,
+        "mag": 15.8,
+        "mag_err": 0.01,
+        "passband": 2,
+        "locus_id": "SN2018bsz"
+    }
+}

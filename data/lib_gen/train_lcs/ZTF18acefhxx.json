@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58428.500949099995,
+        "passband": 2,
+        "mag": 19.5264,
+        "mag_err": 0.178874,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "1": {
+        "mjd": 58431.5246181,
+        "passband": 2,
+        "mag": 19.2404,
+        "mag_err": 0.13356700000000002,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "2": {
+        "mjd": 58439.39217590001,
+        "passband": 2,
+        "mag": 18.9824,
+        "mag_err": 0.200716,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "3": {
+        "mjd": 58440.5404398,
+        "passband": 2,
+        "mag": 19.1912,
+        "mag_err": 0.07947960000000001,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "4": {
+        "mjd": 58442.3932755,
+        "passband": 2,
+        "mag": 18.9713,
+        "mag_err": 0.199357,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "5": {
+        "mjd": 58448.464166699996,
+        "passband": 2,
+        "mag": 19.5602,
+        "mag_err": 0.214234,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "6": {
+        "mjd": 58874.3557292,
+        "passband": 1,
+        "mag": 20.4537,
+        "mag_err": 0.22280500000000003,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "7": {
+        "mjd": 58891.23157409999,
+        "passband": 1,
+        "mag": 20.2943,
+        "mag_err": 0.330354,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "8": {
+        "mjd": 58894.2974653,
+        "passband": 1,
+        "mag": 20.5046,
+        "mag_err": 0.22782600000000003,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "9": {
+        "mjd": 58954.1830556,
+        "passband": 1,
+        "mag": 20.3992,
+        "mag_err": 0.215721,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "10": {
+        "mjd": 58965.2082755,
+        "passband": 1,
+        "mag": 20.3227,
+        "mag_err": 0.20832699999999998,
+        "locus_id": "ZTF18acefhxx"
+    },
+    "11": {
+        "mjd": 58968.2124421,
+        "passband": 1,
+        "mag": 20.2275,
+        "mag_err": 0.176957,
+        "locus_id": "ZTF18acefhxx"
+    }
+}

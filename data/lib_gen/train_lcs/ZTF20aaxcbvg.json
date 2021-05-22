@@ -1,0 +1,93 @@
+{
+    "0": {
+        "mjd": 58964.3783333,
+        "passband": 1,
+        "mag": 20.6405,
+        "mag_err": 0.21950799999999998,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "1": {
+        "mjd": 58964.4017477,
+        "passband": 2,
+        "mag": 20.48,
+        "mag_err": 0.261353,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "2": {
+        "mjd": 58967.377523099996,
+        "passband": 2,
+        "mag": 20.0468,
+        "mag_err": 0.19098099999999998,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "3": {
+        "mjd": 58967.4207986,
+        "passband": 1,
+        "mag": 20.1824,
+        "mag_err": 0.20572600000000002,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "4": {
+        "mjd": 58972.369421300005,
+        "passband": 2,
+        "mag": 19.8011,
+        "mag_err": 0.172073,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "5": {
+        "mjd": 58972.401608800006,
+        "passband": 2,
+        "mag": 19.6726,
+        "mag_err": 0.273928,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "6": {
+        "mjd": 58975.2948727,
+        "passband": 1,
+        "mag": 19.7192,
+        "mag_err": 0.315562,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "7": {
+        "mjd": 58975.3792477,
+        "passband": 2,
+        "mag": 19.6298,
+        "mag_err": 0.196949,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "8": {
+        "mjd": 58978.295578699996,
+        "passband": 2,
+        "mag": 19.5269,
+        "mag_err": 0.17851,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "9": {
+        "mjd": 58981.2720255,
+        "passband": 2,
+        "mag": 19.7739,
+        "mag_err": 0.18371500000000002,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "10": {
+        "mjd": 58981.3324884,
+        "passband": 1,
+        "mag": 20.4303,
+        "mag_err": 0.367492,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "11": {
+        "mjd": 58984.403009300004,
+        "passband": 2,
+        "mag": 19.9152,
+        "mag_err": 0.143518,
+        "locus_id": "ZTF20aaxcbvg"
+    },
+    "12": {
+        "mjd": 58987.3150926,
+        "passband": 2,
+        "mag": 20.0798,
+        "mag_err": 0.17436300000000002,
+        "locus_id": "ZTF20aaxcbvg"
+    }
+}

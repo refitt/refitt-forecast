@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58723.4151389,
+        "passband": 1,
+        "mag": 20.5327,
+        "mag_err": 0.17743,
+        "locus_id": "ZTF19abuazly"
+    },
+    "1": {
+        "mjd": 58726.30407409999,
+        "passband": 2,
+        "mag": 19.9092,
+        "mag_err": 0.125781,
+        "locus_id": "ZTF19abuazly"
+    },
+    "2": {
+        "mjd": 58730.30189809999,
+        "passband": 1,
+        "mag": 19.0132,
+        "mag_err": 0.0721334,
+        "locus_id": "ZTF19abuazly"
+    },
+    "3": {
+        "mjd": 58730.3839005,
+        "passband": 2,
+        "mag": 19.13,
+        "mag_err": 0.09038380000000001,
+        "locus_id": "ZTF19abuazly"
+    },
+    "4": {
+        "mjd": 58733.31785880001,
+        "passband": 1,
+        "mag": 18.6738,
+        "mag_err": 0.0649223,
+        "locus_id": "ZTF19abuazly"
+    },
+    "5": {
+        "mjd": 58736.30714119999,
+        "passband": 1,
+        "mag": 18.6696,
+        "mag_err": 0.10716700000000001,
+        "locus_id": "ZTF19abuazly"
+    },
+    "6": {
+        "mjd": 58743.3400231,
+        "passband": 2,
+        "mag": 18.857,
+        "mag_err": 0.117601,
+        "locus_id": "ZTF19abuazly"
+    },
+    "7": {
+        "mjd": 58743.3850579,
+        "passband": 1,
+        "mag": 18.7047,
+        "mag_err": 0.160184,
+        "locus_id": "ZTF19abuazly"
+    },
+    "8": {
+        "mjd": 58747.273588,
+        "passband": 1,
+        "mag": 19.0167,
+        "mag_err": 0.080971,
+        "locus_id": "ZTF19abuazly"
+    },
+    "9": {
+        "mjd": 58750.2575926,
+        "passband": 2,
+        "mag": 19.1774,
+        "mag_err": 0.0860413,
+        "locus_id": "ZTF19abuazly"
+    },
+    "10": {
+        "mjd": 58754.274166699994,
+        "passband": 1,
+        "mag": 19.6996,
+        "mag_err": 0.14389200000000002,
+        "locus_id": "ZTF19abuazly"
+    },
+    "11": {
+        "mjd": 58757.2975347,
+        "passband": 2,
+        "mag": 19.5323,
+        "mag_err": 0.10289100000000001,
+        "locus_id": "ZTF19abuazly"
+    }
+}

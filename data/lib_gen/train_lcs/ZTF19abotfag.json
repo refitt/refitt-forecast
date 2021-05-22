@@ -1,0 +1,107 @@
+{
+    "0": {
+        "mjd": 58704.370046300006,
+        "passband": 1,
+        "mag": 19.733,
+        "mag_err": 0.187613,
+        "locus_id": "ZTF19abotfag"
+    },
+    "1": {
+        "mjd": 58705.4414005,
+        "passband": 2,
+        "mag": 19.6115,
+        "mag_err": 0.18600000000000003,
+        "locus_id": "ZTF19abotfag"
+    },
+    "2": {
+        "mjd": 58707.3990625,
+        "passband": 1,
+        "mag": 19.1412,
+        "mag_err": 0.186007,
+        "locus_id": "ZTF19abotfag"
+    },
+    "3": {
+        "mjd": 58714.2446875,
+        "passband": 1,
+        "mag": 19.0977,
+        "mag_err": 0.174451,
+        "locus_id": "ZTF19abotfag"
+    },
+    "4": {
+        "mjd": 58714.33851849999,
+        "passband": 2,
+        "mag": 19.065,
+        "mag_err": 0.129487,
+        "locus_id": "ZTF19abotfag"
+    },
+    "5": {
+        "mjd": 58716.367858800004,
+        "passband": 2,
+        "mag": 18.9513,
+        "mag_err": 0.12399400000000001,
+        "locus_id": "ZTF19abotfag"
+    },
+    "6": {
+        "mjd": 58717.37810190001,
+        "passband": 1,
+        "mag": 19.1194,
+        "mag_err": 0.169195,
+        "locus_id": "ZTF19abotfag"
+    },
+    "7": {
+        "mjd": 58719.24002309999,
+        "passband": 1,
+        "mag": 19.1968,
+        "mag_err": 0.15509,
+        "locus_id": "ZTF19abotfag"
+    },
+    "8": {
+        "mjd": 58720.3714468,
+        "passband": 2,
+        "mag": 19.1682,
+        "mag_err": 0.149618,
+        "locus_id": "ZTF19abotfag"
+    },
+    "9": {
+        "mjd": 58723.2563773,
+        "passband": 1,
+        "mag": 19.4544,
+        "mag_err": 0.11116199999999998,
+        "locus_id": "ZTF19abotfag"
+    },
+    "10": {
+        "mjd": 58725.3155903,
+        "passband": 1,
+        "mag": 19.6324,
+        "mag_err": 0.19850399999999999,
+        "locus_id": "ZTF19abotfag"
+    },
+    "11": {
+        "mjd": 58726.24267359999,
+        "passband": 1,
+        "mag": 19.7437,
+        "mag_err": 0.175243,
+        "locus_id": "ZTF19abotfag"
+    },
+    "12": {
+        "mjd": 58732.230798599994,
+        "passband": 2,
+        "mag": 19.628,
+        "mag_err": 0.19548,
+        "locus_id": "ZTF19abotfag"
+    },
+    "13": {
+        "mjd": 58732.231713,
+        "passband": 2,
+        "mag": 19.711,
+        "mag_err": 0.169311,
+        "locus_id": "ZTF19abotfag"
+    },
+    "14": {
+        "mjd": 58732.298761599995,
+        "passband": 1,
+        "mag": 20.1905,
+        "mag_err": 0.207,
+        "locus_id": "ZTF19abotfag"
+    }
+}

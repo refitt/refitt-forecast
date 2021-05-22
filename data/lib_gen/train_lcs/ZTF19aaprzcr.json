@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58583.2512153,
+        "passband": 1,
+        "mag": 19.993,
+        "mag_err": 0.289546,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "1": {
+        "mjd": 58583.253229199996,
+        "passband": 2,
+        "mag": 19.7578,
+        "mag_err": 0.18801500000000002,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "2": {
+        "mjd": 58583.253229199996,
+        "passband": 2,
+        "mag": 19.7578,
+        "mag_err": 0.18801500000000002,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "3": {
+        "mjd": 58586.2303819,
+        "passband": 2,
+        "mag": 18.7052,
+        "mag_err": 0.0751731,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "4": {
+        "mjd": 58586.252893499994,
+        "passband": 1,
+        "mag": 18.5494,
+        "mag_err": 0.1095,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "5": {
+        "mjd": 58592.252338,
+        "passband": 2,
+        "mag": 17.7959,
+        "mag_err": 0.0715967,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "6": {
+        "mjd": 58596.20979169999,
+        "passband": 1,
+        "mag": 17.3228,
+        "mag_err": 0.040608,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "7": {
+        "mjd": 58599.210057899996,
+        "passband": 1,
+        "mag": 17.259,
+        "mag_err": 0.0464392,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "8": {
+        "mjd": 58607.232071800005,
+        "passband": 2,
+        "mag": 17.6932,
+        "mag_err": 0.0515018,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "9": {
+        "mjd": 58612.1705324,
+        "passband": 1,
+        "mag": 17.9815,
+        "mag_err": 0.0497026,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "10": {
+        "mjd": 58612.2093171,
+        "passband": 2,
+        "mag": 18.0202,
+        "mag_err": 0.056324,
+        "locus_id": "ZTF19aaprzcr"
+    },
+    "11": {
+        "mjd": 58634.1893403,
+        "passband": 1,
+        "mag": 19.6017,
+        "mag_err": 0.137317,
+        "locus_id": "ZTF19aaprzcr"
+    }
+}

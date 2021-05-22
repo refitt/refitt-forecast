@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58723.1753241,
+        "passband": 1,
+        "mag": 20.2881,
+        "mag_err": 0.24097,
+        "locus_id": "ZTF19abtulak"
+    },
+    "1": {
+        "mjd": 58727.13458330001,
+        "passband": 2,
+        "mag": 19.4985,
+        "mag_err": 0.150977,
+        "locus_id": "ZTF19abtulak"
+    },
+    "2": {
+        "mjd": 58727.183205999994,
+        "passband": 1,
+        "mag": 19.3655,
+        "mag_err": 0.10567,
+        "locus_id": "ZTF19abtulak"
+    },
+    "3": {
+        "mjd": 58734.1366551,
+        "passband": 2,
+        "mag": 19.0794,
+        "mag_err": 0.131302,
+        "locus_id": "ZTF19abtulak"
+    },
+    "4": {
+        "mjd": 58734.1910532,
+        "passband": 1,
+        "mag": 18.9587,
+        "mag_err": 0.116998,
+        "locus_id": "ZTF19abtulak"
+    },
+    "5": {
+        "mjd": 58737.140289400006,
+        "passband": 1,
+        "mag": 18.9132,
+        "mag_err": 0.102072,
+        "locus_id": "ZTF19abtulak"
+    },
+    "6": {
+        "mjd": 58737.184548599995,
+        "passband": 2,
+        "mag": 18.9932,
+        "mag_err": 0.152314,
+        "locus_id": "ZTF19abtulak"
+    },
+    "7": {
+        "mjd": 58740.139838,
+        "passband": 1,
+        "mag": 19.0255,
+        "mag_err": 0.14994100000000002,
+        "locus_id": "ZTF19abtulak"
+    },
+    "8": {
+        "mjd": 58740.26716440001,
+        "passband": 2,
+        "mag": 19.0589,
+        "mag_err": 0.153568,
+        "locus_id": "ZTF19abtulak"
+    },
+    "9": {
+        "mjd": 58743.13795140001,
+        "passband": 1,
+        "mag": 19.2485,
+        "mag_err": 0.116576,
+        "locus_id": "ZTF19abtulak"
+    },
+    "10": {
+        "mjd": 58747.131944400004,
+        "passband": 1,
+        "mag": 19.4153,
+        "mag_err": 0.139787,
+        "locus_id": "ZTF19abtulak"
+    },
+    "11": {
+        "mjd": 58750.1452546,
+        "passband": 1,
+        "mag": 19.7315,
+        "mag_err": 0.16380799999999998,
+        "locus_id": "ZTF19abtulak"
+    }
+}

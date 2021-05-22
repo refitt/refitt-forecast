@@ -1,0 +1,30 @@
+{
+    "0": {
+        "mjd": 58944.1855324,
+        "passband": 2,
+        "mag": 17.3233,
+        "mag_err": 0.0460167,
+        "locus_id": "ZTF20aaupkac"
+    },
+    "1": {
+        "mjd": 58955.195960599995,
+        "passband": 2,
+        "mag": 17.0388,
+        "mag_err": 0.054887599999999995,
+        "locus_id": "ZTF20aaupkac"
+    },
+    "2": {
+        "mjd": 58963.172430599996,
+        "passband": 1,
+        "mag": 17.7005,
+        "mag_err": 0.049668000000000004,
+        "locus_id": "ZTF20aaupkac"
+    },
+    "3": {
+        "mjd": 58966.224965299996,
+        "passband": 1,
+        "mag": 17.9041,
+        "mag_err": 0.0964835,
+        "locus_id": "ZTF20aaupkac"
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58360.4446181,
+        "passband": 1,
+        "mag": 18.8007,
+        "mag_err": 0.121428,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "1": {
+        "mjd": 58363.40685190001,
+        "passband": 1,
+        "mag": 18.7338,
+        "mag_err": 0.118495,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "2": {
+        "mjd": 58366.4245255,
+        "passband": 1,
+        "mag": 18.9462,
+        "mag_err": 0.08538789999999999,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "3": {
+        "mjd": 58369.47151619999,
+        "passband": 1,
+        "mag": 19.0784,
+        "mag_err": 0.0777298,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "4": {
+        "mjd": 58382.451446800005,
+        "passband": 1,
+        "mag": 20.4151,
+        "mag_err": 0.200666,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "5": {
+        "mjd": 58679.4855903,
+        "passband": 2,
+        "mag": 19.9133,
+        "mag_err": 0.205429,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "6": {
+        "mjd": 58695.4698264,
+        "passband": 2,
+        "mag": 19.8154,
+        "mag_err": 0.136568,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "7": {
+        "mjd": 58698.4967824,
+        "passband": 2,
+        "mag": 19.9567,
+        "mag_err": 0.184559,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "8": {
+        "mjd": 58716.46085650001,
+        "passband": 2,
+        "mag": 19.9752,
+        "mag_err": 0.269413,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "9": {
+        "mjd": 58719.46596059999,
+        "passband": 2,
+        "mag": 19.6811,
+        "mag_err": 0.15303599999999998,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "10": {
+        "mjd": 58722.4883333,
+        "passband": 2,
+        "mag": 19.9106,
+        "mag_err": 0.113692,
+        "locus_id": "ZTF18abrytwr"
+    },
+    "11": {
+        "mjd": 58795.29594909999,
+        "passband": 2,
+        "mag": 19.5558,
+        "mag_err": 0.129732,
+        "locus_id": "ZTF18abrytwr"
+    }
+}

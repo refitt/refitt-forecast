@@ -1,11 +1,12 @@
 # REFITT
-### Recommender Engine For Intelligent Transient Tracking
+*Recommender Engine For Intelligent Transient Tracking*
 
 ## Setup
 ### Packages/Dependencies
 - sklearn, astropy
 - George
 - Keras
+- sncosmo
 - tslearn (optional)
 
 ### Generate Library
@@ -36,7 +37,7 @@ Overall results are only reliable after 10 days since trigger – hardsetting to
 Simply execute run.py
 
 Results will be placed in a subfolder ZTF/ZTF_%Y-%m-%dT%H%M
-Priority lists are in a deeper subfolder /priorty
+Priority lists are in a deeper subfolder /priority
 
 Note: prioritize_old.py is legacy and will be removed in the future
 

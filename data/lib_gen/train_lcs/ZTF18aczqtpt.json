@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58474.3058565,
+        "passband": 2,
+        "mag": 19.1716,
+        "mag_err": 0.160579,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "1": {
+        "mjd": 58480.269861099994,
+        "passband": 1,
+        "mag": 18.3392,
+        "mag_err": 0.0972781,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "2": {
+        "mjd": 58480.302696800005,
+        "passband": 2,
+        "mag": 18.3855,
+        "mag_err": 0.06411789999999999,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "3": {
+        "mjd": 58483.138588,
+        "passband": 1,
+        "mag": 18.234,
+        "mag_err": 0.0631556,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "4": {
+        "mjd": 58486.1421296,
+        "passband": 2,
+        "mag": 18.3012,
+        "mag_err": 0.053931799999999995,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "5": {
+        "mjd": 58490.18442130001,
+        "passband": 2,
+        "mag": 18.4035,
+        "mag_err": 0.0608822,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "6": {
+        "mjd": 58493.13611109999,
+        "passband": 2,
+        "mag": 18.5139,
+        "mag_err": 0.0651176,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "7": {
+        "mjd": 58493.22307869999,
+        "passband": 1,
+        "mag": 18.574,
+        "mag_err": 0.08112910000000001,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "8": {
+        "mjd": 58503.141169,
+        "passband": 2,
+        "mag": 18.8775,
+        "mag_err": 0.0891222,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "9": {
+        "mjd": 58507.17076390001,
+        "passband": 1,
+        "mag": 19.7661,
+        "mag_err": 0.144677,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "10": {
+        "mjd": 58507.2279977,
+        "passband": 2,
+        "mag": 19.104,
+        "mag_err": 0.110384,
+        "locus_id": "ZTF18aczqtpt"
+    },
+    "11": {
+        "mjd": 58514.1154977,
+        "passband": 2,
+        "mag": 19.291,
+        "mag_err": 0.0817904,
+        "locus_id": "ZTF18aczqtpt"
+    }
+}

@@ -1,0 +1,170 @@
+{
+    "0": {
+        "mjd": 58616.251053199994,
+        "passband": 1,
+        "mag": 19.2083,
+        "mag_err": 0.11478800000000002,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "1": {
+        "mjd": 58616.271828699995,
+        "passband": 1,
+        "mag": 19.2208,
+        "mag_err": 0.130645,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "2": {
+        "mjd": 58616.2935301,
+        "passband": 2,
+        "mag": 19.4314,
+        "mag_err": 0.12445,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "3": {
+        "mjd": 58616.293981500006,
+        "passband": 2,
+        "mag": 19.3811,
+        "mag_err": 0.118192,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "4": {
+        "mjd": 58619.27041669999,
+        "passband": 1,
+        "mag": 18.8481,
+        "mag_err": 0.1787,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "5": {
+        "mjd": 58619.2713426,
+        "passband": 1,
+        "mag": 18.9806,
+        "mag_err": 0.23164,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "6": {
+        "mjd": 58619.3160532,
+        "passband": 2,
+        "mag": 19.1367,
+        "mag_err": 0.196018,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "7": {
+        "mjd": 58619.3165046,
+        "passband": 2,
+        "mag": 19.0215,
+        "mag_err": 0.189104,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "8": {
+        "mjd": 58628.313229199994,
+        "passband": 2,
+        "mag": 18.9614,
+        "mag_err": 0.090121,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "9": {
+        "mjd": 58633.25101849999,
+        "passband": 1,
+        "mag": 19.1979,
+        "mag_err": 0.09998610000000001,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "10": {
+        "mjd": 58633.2514699,
+        "passband": 1,
+        "mag": 19.2986,
+        "mag_err": 0.0971424,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "11": {
+        "mjd": 58633.2958102,
+        "passband": 2,
+        "mag": 19.2274,
+        "mag_err": 0.08724939999999999,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "12": {
+        "mjd": 58633.297419,
+        "passband": 2,
+        "mag": 19.2087,
+        "mag_err": 0.107901,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "13": {
+        "mjd": 58636.209976900005,
+        "passband": 2,
+        "mag": 19.3054,
+        "mag_err": 0.11878,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "14": {
+        "mjd": 58636.21042819999,
+        "passband": 2,
+        "mag": 19.3258,
+        "mag_err": 0.0998653,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "15": {
+        "mjd": 58636.27354169999,
+        "passband": 1,
+        "mag": 19.5108,
+        "mag_err": 0.11961,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "16": {
+        "mjd": 58636.2740046,
+        "passband": 1,
+        "mag": 19.5479,
+        "mag_err": 0.0959665,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "17": {
+        "mjd": 58639.2308449,
+        "passband": 1,
+        "mag": 20.0136,
+        "mag_err": 0.145253,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "18": {
+        "mjd": 58639.2739352,
+        "passband": 2,
+        "mag": 19.4281,
+        "mag_err": 0.114168,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "19": {
+        "mjd": 58642.2522454,
+        "passband": 2,
+        "mag": 19.6952,
+        "mag_err": 0.124654,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "20": {
+        "mjd": 58642.2526968,
+        "passband": 2,
+        "mag": 19.5697,
+        "mag_err": 0.11701500000000001,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "21": {
+        "mjd": 58642.297037000004,
+        "passband": 1,
+        "mag": 20.1592,
+        "mag_err": 0.138427,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "22": {
+        "mjd": 58642.2975,
+        "passband": 1,
+        "mag": 20.1386,
+        "mag_err": 0.135372,
+        "locus_id": "ZTF19aauplxw"
+    },
+    "23": {
+        "mjd": 58645.273726900006,
+        "passband": 2,
+        "mag": 19.5213,
+        "mag_err": 0.193226,
+        "locus_id": "ZTF19aauplxw"
+    }
+}

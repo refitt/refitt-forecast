@@ -1,0 +1,107 @@
+{
+    "0": {
+        "mjd": 58286.2221181,
+        "passband": 1,
+        "mag": 20.0631,
+        "mag_err": 0.138476,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "1": {
+        "mjd": 58286.28329859999,
+        "passband": 2,
+        "mag": 19.9967,
+        "mag_err": 0.164215,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "2": {
+        "mjd": 58289.176794000006,
+        "passband": 1,
+        "mag": 19.2687,
+        "mag_err": 0.139958,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "3": {
+        "mjd": 58289.2186227,
+        "passband": 2,
+        "mag": 19.1867,
+        "mag_err": 0.154495,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "4": {
+        "mjd": 58292.228159700004,
+        "passband": 1,
+        "mag": 18.9172,
+        "mag_err": 0.12175899999999999,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "5": {
+        "mjd": 58292.2361806,
+        "passband": 2,
+        "mag": 18.8666,
+        "mag_err": 0.115369,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "6": {
+        "mjd": 58295.1767245,
+        "passband": 1,
+        "mag": 18.6591,
+        "mag_err": 0.143056,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "7": {
+        "mjd": 58295.240891199996,
+        "passband": 2,
+        "mag": 18.578,
+        "mag_err": 0.108918,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "8": {
+        "mjd": 58298.17875,
+        "passband": 1,
+        "mag": 18.6605,
+        "mag_err": 0.107524,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "9": {
+        "mjd": 58298.25895830001,
+        "passband": 2,
+        "mag": 18.4685,
+        "mag_err": 0.08001489999999999,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "10": {
+        "mjd": 58301.1774653,
+        "passband": 2,
+        "mag": 18.3413,
+        "mag_err": 0.0707238,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "11": {
+        "mjd": 58301.25770830001,
+        "passband": 1,
+        "mag": 18.7427,
+        "mag_err": 0.096703,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "12": {
+        "mjd": 58307.177580999996,
+        "passband": 2,
+        "mag": 18.4712,
+        "mag_err": 0.067025,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "13": {
+        "mjd": 58307.22469909999,
+        "passband": 1,
+        "mag": 19.1521,
+        "mag_err": 0.121771,
+        "locus_id": "ZTF18abbovuc"
+    },
+    "14": {
+        "mjd": 58319.210949099994,
+        "passband": 2,
+        "mag": 19.1575,
+        "mag_err": 0.184614,
+        "locus_id": "ZTF18abbovuc"
+    }
+}

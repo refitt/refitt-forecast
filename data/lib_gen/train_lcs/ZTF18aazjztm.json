@@ -1,0 +1,86 @@
+{
+    "0": {
+        "mjd": 58281.2807523,
+        "passband": 1,
+        "mag": 19.6894,
+        "mag_err": 0.0910138,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "1": {
+        "mjd": 58284.25894680001,
+        "passband": 1,
+        "mag": 19.1117,
+        "mag_err": 0.0601888,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "2": {
+        "mjd": 58284.32186340001,
+        "passband": 2,
+        "mag": 19.1152,
+        "mag_err": 0.09686,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "3": {
+        "mjd": 58287.3200347,
+        "passband": 2,
+        "mag": 18.8637,
+        "mag_err": 0.0516975,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "4": {
+        "mjd": 58290.24395830001,
+        "passband": 1,
+        "mag": 18.6315,
+        "mag_err": 0.0836895,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "5": {
+        "mjd": 58290.348044000006,
+        "passband": 2,
+        "mag": 18.6911,
+        "mag_err": 0.0923916,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "6": {
+        "mjd": 58293.2584722,
+        "passband": 2,
+        "mag": 18.6944,
+        "mag_err": 0.0894288,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "7": {
+        "mjd": 58293.349838,
+        "passband": 1,
+        "mag": 18.7575,
+        "mag_err": 0.076112,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "8": {
+        "mjd": 58297.33114580001,
+        "passband": 2,
+        "mag": 18.6583,
+        "mag_err": 0.10531199999999999,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "9": {
+        "mjd": 58300.2167245,
+        "passband": 1,
+        "mag": 19.1481,
+        "mag_err": 0.10251500000000001,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "10": {
+        "mjd": 58300.3266435,
+        "passband": 2,
+        "mag": 19.0114,
+        "mag_err": 0.10606900000000001,
+        "locus_id": "ZTF18aazjztm"
+    },
+    "11": {
+        "mjd": 58314.1983796,
+        "passband": 2,
+        "mag": 19.5701,
+        "mag_err": 0.171622,
+        "locus_id": "ZTF18aazjztm"
+    }
+}
