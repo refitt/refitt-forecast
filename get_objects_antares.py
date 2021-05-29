@@ -112,5 +112,5 @@ for i,col in enumerate(cols):
   ax.set_xlabel(col)
 
 plt.savefig(dest+'/daily_stats.png')
-utils.log('Fetched {} objects from Antares'.format(df_stats.shape[0]))
+utils.log('Fetched {} objects from Antares. See summary at {}'.format(df_stats.shape[0],dest+'/daily_stats.png'))
 
