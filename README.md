@@ -3,20 +3,19 @@
 
 ## Setup
 ### Packages/Dependencies
-- sklearn, astropy
 - George
 - Keras
-- sncosmo
+- sncosmo, sfdmap
 - tslearn (optional)
 
-in refitt.py change refitt_loc to the path containing itself
+### Prep
+after cloning pip install .
+tar xzf data/lib_gen/train_lcs.tar.gz -C data/lib_gen
 
 ### Generate Library
-files in <class_name>/train/ has json files for reference LCs
-record to 60 days from trigger in g and r
-
-these are simulations made with wrangle_data_for_library.py and make_library_ZTF.py
-but forgot to record details on how to go about making these
+Run make_library_ZTF.py in place
+This will generate training LCs in data/class
+time to gen
 
 ### Training
 1. Build CAE reps for each library LC from horizon-window days by running make_reps.py.
@@ -44,8 +43,6 @@ Priority lists are in a deeper subfolder /priority
 Note: prioritize_old.py is legacy and will be removed in the future
 
 # Disclaimer:
-This code is not pip or conda installable due to extensive setup needed.
-
 While I have tried my best to document all steps to make sure REFITT works on any machine, I have only ever set it up on mine. 
 If you are running into errors while following the steps, please do reach out and I will help fix it and push an update. 
 Alternately, if you do end up fixing the issue yourself, please share your fix anyway or send a pull request for the benefit of everyone.

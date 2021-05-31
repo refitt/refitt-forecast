@@ -1,27 +1,25 @@
-# will overwrite all files if n_events is 5000
-
+# will overwrite all files
 import json
 import pandas as pd
 import numpy as np
 import math
 import os,sys,glob,time
-
 import matplotlib as mpl
 mpl.use('agg')
 import matplotlib.pyplot as plt
 
 from scipy import stats
 from joblib import dump, load
-
-import refitt
-import sncosmo
-import sfdmap
-dustmap = sfdmap.SFDMap('sncosmo/sfddata-master')
 from astropy.coordinates import SkyCoord
 from astropy import units as u
+import sncosmo
+import sfdmap
+dustmap = sfdmap.SFDMap('sfddata-master')
+
+import ../../refitt
 
 t=time.time()
-n_events=5000
+events_per_bin=500
 types=refitt.lib_classes
 kde=load('revisit_kde.joblib')
 noise=load('noise_kde.joblib')
@@ -101,20 +99,21 @@ for c in classes.keys():
       meta=json.load(f)
     if meta['Type']==c:
       sn_list.append(sn)
+  if not os.path.exists(refitt.refitt_loc+'/data/'+c):
+    os.makedirs(refitt.refitt_loc+'/data/'+c)
   inj_stats=pd.DataFrame()
   sim_stats=pd.DataFrame()
-  nbins=len(classes[c]['z_bins'])-1
   simnum=0
-  for i in range(nbins):
+  for i in len(classes[c]['z_bins'])-1:
     ctr=0
-    while ctr<math.ceil(n_events/nbins):
+    while ctr<math.ceil(events_per_bin):
       #pick random event
       sn=np.random.choice(sn_list)
       df_LC=pd.read_json(sn.split('_meta')[0]+'.json',orient='index')
       with open(sn,'r') as f:
         meta=json.load(f)
       #simulate new environment
-      z_new=np.random.uniform(classes[c]['z_bins'][i],
+      z_new=10.**np.random.uniform(classes[c]['z_bins'][i],
                               classes[c]['z_bins'][i+1])
             #+np.random.normal(0, 0.001))
       ra_new=360*np.random.random_sample()
@@ -126,8 +125,8 @@ for c in classes.keys():
                                                 'z_new','ra_new','dec_new','src_event']))
                           ])
       #get new observing strategy
-      start=np.random.uniform(df_LC['mjd'][df_LC['mag'].idxmin]-25.,
-                              df_LC['mjd'][df_LC['mag'].idxmin]-10.)
+      start=np.random.uniform(df_LC['mjd'][df_LC['mag'].idxmin]-21.,
+                              df_LC['mjd'][df_LC['mag'].idxmin]+7.) #before and after peak
       df_sim=pd.DataFrame()
       t=start
       while t-start<60.:
@@ -174,14 +173,14 @@ for c in classes.keys():
                                                   'z_new','ra_new','dec_new','src_event']))
                           ])
       df_sim=df_sim.drop(columns=['SNR']).reset_index(drop=True)
-      with open(c+'/train/'+str(simnum)+'.json','w') as f:
+      with open(refitt.refitt_loc+'/data/'+c+'/train/'+str(simnum)+'.json','w') as f:
         json.dump(df_sim.to_dict(orient='index'),f,indent=4)
-  inj_stats.to_pickle(c+'/train/inj_stats.pkl')
-  sim_stats.to_pickle(c+'/train/sim_stats.pkl')
+  inj_stats.to_pickle(refitt.refitt_loc+'/data/'+c+'/train/inj_stats.pkl')
+  sim_stats.to_pickle(refitt.refitt_loc+'/data/'+c+'/train/sim_stats.pkl')
   #stats
   fig=plt.figure()
   plt.hist(inj_stats['z_new'])
   plt.hist(sim_stats['z_new'])
   plt.xlabel('z')
   plt.ylabel('count')
-  fig.savefig(type+'/train/sim_dist.png')
+  fig.savefig(refitt.refitt_loc+'/data/'+c+'/train/sim_dist.png')

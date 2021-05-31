@@ -1,5 +1,6 @@
 data/*
 !data/lib_gen
+data/lib_gen/train_lcs
 test/
 ZTF/
 sncosmo/

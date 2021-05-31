@@ -28,7 +28,7 @@ from sklearn.neighbors import BallTree
 
 #####
 #refitt variables; TODO move to a variable file
-refitt_loc='/depot/cassiopeia/data/ari/refitt_v1'
+refitt_loc='/depot/cassiopeia/data/ari/refitt'
 #this is frame for image sent to CAE
 depth=21 #LSST will be 25
 bright=12
@@ -45,13 +45,15 @@ band_colors={1:'limegreen',2:'orangered'}#,'goldenrod','limegreen','darkturquois
 #####
 
 lib_classes={
-'Ia':{'z_bins':np.arange(0.,0.801,0.01),'method':'Ia'},
-'II':{'z_bins':np.arange(0.,0.101,0.01),'method':'GP'},
-'IIn':{'z_bins':np.arange(0.,0.101,0.01),'method':'GP'},
-'IIb':{'z_bins':np.arange(0.,0.081,0.01),'method':'GP'},
-'Ib':{'z_bins':np.arange(0.,0.101,0.01),'method':'GP'},
-'Ic':{'z_bins':np.arange(0.,0.101,0.01),'method':'GP'},
-'Ic-BL':{'z_bins':np.arange(0.,0.101,0.01),'method':'GP'}
+'Ia':{'logz_bins':np.arange(-2.7,-0.69,0.1),'method':'Ia'},
+'II':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
+'IIn':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
+'IIb':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
+'Ib':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
+'Ic':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
+'Ic-BL':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
+'SLSN-I':{'logz_bins':np.arange(-1.7,-0.29,0.1),'method':'GP'},
+'SLSN-I':{'logz_bins':np.arange(-1.7,-0.29,0.1),'method':'GP'}
 }
 ZTF_zp_dict={'g':26.325,'r':26.275} #from ZSDS_explanatory pg 67
 
