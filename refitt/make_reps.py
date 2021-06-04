@@ -15,10 +15,10 @@ sc_name='make_reps'
 for phase in range(1,31):#refitt.horizon,refitt.window+1):
   library_loc=refitt.select_library('ZTF_public',phase)
   for c in refitt.lib_classes.keys():
-     if not os.path.exists(refitt.refitt_loc+'/'+c+'/'+library_loc):
-        os.makedirs(refitt.refitt_loc+'/'+c+'/'+library_loc)
-     for event in glob.glob(refitt.refitt_loc+'/data/'+c+'/train/*.json'):
-        name=(refitt.refitt_loc+'/'+c+'/'+library_loc+'/'+
+     if not os.path.exists(refitt.DATA_PATH+c+'/'+library_loc):
+        os.makedirs(refitt.DATA_PATH+c+'/'+library_loc)
+     for event in glob.glob(refitt.DATA_PATH+c+'/train/*.json'):
+        name=(refitt.DATA_PATH+c+'/'+library_loc+'/'+
                 os.path.basename(event).split('.')[0]+'_Xception')
         runs+="python -c \"import refitt; import pandas as pd; import numpy as np; " 
         runs+="LC=pd.read_json('"+event+"',orient='index').sort_values(by=['mjd']); "

@@ -98,8 +98,8 @@ for c in classes.keys():
       meta=json.load(f)
     if meta['Type']==c:
       sn_list.append(sn)
-  if not os.path.exists(refitt.refitt_loc+'/data/'+c):
-    os.makedirs(refitt.refitt_loc+'/data/'+c)
+  if not os.path.exists(refitt.DATA_PATH+c):
+    os.makedirs(refitt.DATA_PATH+c)
   inj_stats=pd.DataFrame()
   sim_stats=pd.DataFrame()
   simnum=0
@@ -172,14 +172,14 @@ for c in classes.keys():
                                                   'z_new','ra_new','dec_new','src_event']))
                           ])
       df_sim=df_sim.drop(columns=['SNR']).reset_index(drop=True)
-      with open(refitt.refitt_loc+'/data/'+c+'/train/'+str(simnum)+'.json','w') as f:
+      with open(refitt.DATA_PATH+c+'/train/'+str(simnum)+'.json','w') as f:
         json.dump(df_sim.to_dict(orient='index'),f,indent=4)
-  inj_stats.to_pickle(refitt.refitt_loc+'/data/'+c+'/train/inj_stats.pkl')
-  sim_stats.to_pickle(refitt.refitt_loc+'/data/'+c+'/train/sim_stats.pkl')
+  inj_stats.to_pickle(refitt.DATA_PATH+c+'/train/inj_stats.pkl')
+  sim_stats.to_pickle(refitt.DATA_PATH+c+'/train/sim_stats.pkl')
   #stats
   fig=plt.figure()
   plt.hist(inj_stats['z_new'])
   plt.hist(sim_stats['z_new'])
   plt.xlabel('z')
   plt.ylabel('count')
-  fig.savefig(refitt.refitt_loc+'/data/'+c+'/train/sim_dist.png')
+  fig.savefig(refitt.DATA_PATH+c+'/train/sim_dist.png')

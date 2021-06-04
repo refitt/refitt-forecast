@@ -6,7 +6,7 @@ import os, sys, glob, shutil
 import subprocess
 from astropy.time import Time
 from datetime import datetime, timedelta
-import utils
+import refitt.utils as utils
 
 qname='refitt'
 wt={'refitt':'1:00','standby':'1:00','debug':'30'}

@@ -20,7 +20,7 @@ for i in range(rows):
 
 k_opt_dict={}
 for i,phase in enumerate(range(6,refitt.window+1)):
-  obj=np.load(refitt.refitt_loc+'/data/obj_'+str(phase)+'.npy')
+  obj=np.load(refitt.DATA_PATH+'obj_'+str(phase)+'.npy')
   sax[i].plot(obj[:,0],obj[:,1]/obj[:,2],label=phase)
   k_opt=obj[np.argmin(obj[:,1]/obj[:,2]),0]
   sax[i].annotate(str(phase)+';'+str(k_opt),xy=(0.5,0.5),xycoords='axes fraction')
@@ -28,8 +28,8 @@ for i,phase in enumerate(range(6,refitt.window+1)):
   sax[i].set_yticklabels([])
   sax[i].set_xlim(10.,50.)
   k_opt_dict[int(phase)]=int(k_opt)
-fig.savefig('obj.png',dpi=300)
+fig.savefig(refitt.DATA_PATH+'obj.png',dpi=300)
 
-with open(refitt.refitt_loc+'/kNN_optimal.json','w') as f:
+with open(refitt.DATA_PATH+'kNN_optimal.json','w') as f:
   json.dump(k_opt_dict,f,indent=4)
 

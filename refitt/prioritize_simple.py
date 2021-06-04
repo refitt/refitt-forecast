@@ -4,7 +4,7 @@ import os, sys, shutil, glob
 import refitt
 import json
 import pdb
-import utils
+import refitt.utils as utils
 
 event_folder=str(sys.argv[1]) #full path
 cols=['object','band','moe','magg','magr','tpeak','plus_uncer','min_tpeak','class','sig',

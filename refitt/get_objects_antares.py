@@ -6,7 +6,7 @@ from antares_client.search import search
 from antares_client.search import get_by_id
 import marshmallow
 
-import utils
+import refitt.utils as utils
 
 min_photo=3
 window=60 #window of action
