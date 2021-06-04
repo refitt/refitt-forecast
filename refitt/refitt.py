@@ -9,6 +9,7 @@ import pandas as pd
 import logging
 logging.basicConfig(format='%(asctime)s %(message)s')
 from typing import Tuple
+import pkg_resources
 #plotting
 import matplotlib as mpl
 mpl.use('agg')
@@ -23,12 +24,12 @@ import itertools
 from astropy.stats import biweight_location
 from astropy.time import Time
 from datetime import datetime
-from enum import Enum
 from sklearn.neighbors import BallTree
 
 #####
 #refitt variables; TODO move to a variable file
-refitt_loc='/depot/cassiopeia/data/ari/refitt'
+DATA_PATH = pkg_resources.resource_filename('refitt', 'data/')
+#refitt_loc='/depot/cassiopeia/data/ari/refitt'
 #this is frame for image sent to CAE
 depth=21 #LSST will be 25
 bright=12
@@ -84,17 +85,17 @@ def make_balltrees(phase,survey='ZTF_public'):
   fname=np.array([])
   library_loc=select_library(survey,phase)
   for c in lib_classes.keys():
-    for event in glob.glob(refitt_loc+'/data/'+c+'/'+library_loc+'/*.npy'):
+    for event in glob.glob(DATA_PATH+c+'/'+library_loc+'/*.npy'):
       NN_file=event.split(survey)
       LC_file=NN_file[0]+os.path.basename(NN_file[1]).split('_Xception')[0]+'.json'
       fname=np.append(fname,np.array(LC_file))# if fname.size else np.array(event)
       rep_comp=np.load(event)
       X=np.vstack([X,rep_comp[np.newaxis,:]]) if X.size else rep_comp[np.newaxis,:]
   #np.save(refitt_loc+'/train_AE'+str(tst),X)
-  np.save(refitt_loc+'/data/balltree_AE_'+str(phase)+'_fnames',fname)
+  np.save(DATA_PATH+'balltree_AE_'+str(phase)+'_fnames',fname)
   
   tree=BallTree(X,leaf_size=2,metric='l1') #2 leaves are good
-  with open(refitt_loc+'/data/balltree_AE_'+str(phase)+'.pkl','wb') as f:
+  with open(DATA_PATH+'balltree_AE_'+str(phase)+'.pkl','wb') as f:
     pickle.dump(tree,f)
   
 
@@ -313,9 +314,9 @@ class Transient():
            Default=0
 
     '''
-    with open(refitt_loc+'/data/balltree_AE_'+str(self.phase)+'.pkl','rb') as f:
+    with open(DATA_PATH+'balltree_AE_'+str(self.phase)+'.pkl','rb') as f:
       tree=pickle.load(f)
-    fname=np.load(refitt_loc+'/data/balltree_AE_'+str(self.phase)+'_fnames.npy')
+    fname=np.load(DATA_PATH+'balltree_AE_'+str(self.phase)+'_fnames.npy')
     dist,ind=tree.query(self.AE_rep[np.newaxis,:],kNN+start)
     #if ((class_info) and (class_info in lib_classes.keys())):
     #   NNs=update_NNs(NNs,kNN,class_info,classifier)
@@ -346,7 +347,7 @@ class Transient():
     TODO: perhaps only provide one?
     '''
     ref_list=ref_list.iloc[:kNN]
-    if (obj_class in lib_classes.keys()): c_max=[refitt_loc+'/data/'+obj_class+'/train/']
+    if (obj_class in lib_classes.keys()): c_max=[DATA_PATH+obj_class+'/train/']
     else: c_max=ref_list[0].apply(lambda x: str(x).split('train')[0]).mode().values
     c_rel=pd.concat([ref_list[ref_list[0].str.contains(c_str)] for c_str in c_max])
     if reset_index: c_rel=c_rel.reset_index(drop=True)
@@ -655,7 +656,7 @@ def kNN_at_tst(transient):
   '''
   fname={'LSST':'k_optimal.json',
          'ZTF_public':'kNN_optimal.json'}
-  with open(refitt_loc+'/'+fname[transient.survey], 'r') as f:
+  with open(DATA_PATH+fname[transient.survey], 'r') as f:
     k_opt_dict=json.load(f)
   kNN=k_opt_dict[str(transient.phase)]
   return kNN

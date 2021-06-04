@@ -3,9 +3,11 @@
 
 ## Setup
 ### Packages/Dependencies
-- George
+- george
 - Keras
 - sncosmo, sfdmap
+- elasticsearch_dsl
+- antares-client
 - tslearn (optional)
 
 ### Prep
@@ -44,7 +46,7 @@ Note: prioritize_old.py is legacy and will be removed in the future
 
 # Disclaimer:
 While I have tried my best to document all steps to make sure REFITT works on any machine, I have only ever set it up on mine. 
-If you are running into errors while following the steps, please do reach out and I will help fix it and push an update. 
+If you are running into errors following the steps, please do reach out and I will help fix it and push an update. 
 Alternately, if you do end up fixing the issue yourself, please share your fix anyway or send a pull request for the benefit of everyone.
 
 # Notes:

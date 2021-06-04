@@ -1,9 +1,8 @@
-data/*
-!data/lib_gen
-data/lib_gen/train_lcs
-test/
-ZTF/
-sncosmo/
-
+refitt/data/*
+!refitt/data/lib_gen
+refitt/data/lib_gen/train_lcs
+refitt/ZTF/
+envs/
+refitt.egg-info/
 slurm*
 *.sub

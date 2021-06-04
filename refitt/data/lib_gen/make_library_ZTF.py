@@ -16,9 +16,8 @@ import sncosmo
 import sfdmap
 dustmap = sfdmap.SFDMap('sfddata-master')
 
-import ../../refitt
+import refitt
 
-t=time.time()
 events_per_bin=500
 types=refitt.lib_classes
 kde=load('revisit_kde.joblib')
@@ -129,7 +128,7 @@ for c in classes.keys():
                               df_LC['mjd'][df_LC['mag'].idxmin]+7.) #before and after peak
       df_sim=pd.DataFrame()
       t=start
-      while t-start<60.:
+      while t-start<refitt.window:
         samp=df_samp.sample()
         df_sim=pd.concat([df_sim,pd.DataFrame(
                                             np.array([t+samp['t'].values[0],
