@@ -9,7 +9,6 @@ import pandas as pd
 import logging
 logging.basicConfig(format='%(asctime)s %(message)s')
 from typing import Tuple
-import pkg_resources
 #plotting
 import matplotlib as mpl
 mpl.use('agg')
@@ -26,43 +25,10 @@ from astropy.time import Time
 from datetime import datetime
 from sklearn.neighbors import BallTree
 
-#####
-#refitt variables; TODO move to a variable file
-DATA_PATH = pkg_resources.resource_filename('refitt', 'data/')
-#refitt_loc='/depot/cassiopeia/data/ari/refitt'
-#this is frame for image sent to CAE
-depth=21 #LSST will be 25
-bright=12
-horizon=6 #start of forecasts
-window=60 #window of action
-min_photo=3
-gap=21 #maximum lapse since last photometry
-pad=2. #for plotting and CAE
-resol=0.02 #GP, CC alignment and moe 
-
-band_name_dict={0:'u',1:'g',2:'r',3:'i',4:'z',5:'y'}
-band_colors={1:'limegreen',2:'orangered'}#,'goldenrod','limegreen','darkturquoise',
-             #'mediumslateblue','orchid']
-#####
-
-lib_classes={
-'Ia':{'logz_bins':np.arange(-2.7,-0.69,0.1),'method':'Ia'},
-'II':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
-'IIn':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
-'IIb':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
-'Ib':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
-'Ic':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
-'Ic-BL':{'logz_bins':np.arange(-2.7,-0.89,0.1),'method':'GP'},
-'SLSN-I':{'logz_bins':np.arange(-1.7,-0.29,0.1),'method':'GP'},
-'SLSN-I':{'logz_bins':np.arange(-1.7,-0.29,0.1),'method':'GP'}
-}
-ZTF_zp_dict={'g':26.325,'r':26.275} #from ZSDS_explanatory pg 67
-
-from astropy.cosmology import FlatLambdaCDM
-cosmo=FlatLambdaCDM(H0=70,Om0=0.3,Tcmb0=2.725)
+from refitt import defs
 
 def select_library(survey,phase) -> str:
-  return ('train/'+survey+'_rep_phase_'+str(phase))
+  return (survey+'_rep_phase_'+str(phase))
 
 def get_band_info(survey) -> list:
   """
@@ -75,34 +41,9 @@ def get_band_info(survey) -> list:
     band_list=[1,2,3]
   return band_list
 
-def make_balltrees(phase,survey='ZTF_public'):
-  '''
-  Helper function to create ball trees
-  only meaningful to call after make_reps for phase is done
-  will make balltrees and filename list at refitt_loc
-  '''
-  X=np.array([])
-  fname=np.array([])
-  library_loc=select_library(survey,phase)
-  for c in lib_classes.keys():
-    for event in glob.glob(DATA_PATH+c+'/'+library_loc+'/*.npy'):
-      NN_file=event.split(survey)
-      LC_file=NN_file[0]+os.path.basename(NN_file[1]).split('_Xception')[0]+'.json'
-      fname=np.append(fname,np.array(LC_file))# if fname.size else np.array(event)
-      rep_comp=np.load(event)
-      X=np.vstack([X,rep_comp[np.newaxis,:]]) if X.size else rep_comp[np.newaxis,:]
-  #np.save(refitt_loc+'/train_AE'+str(tst),X)
-  np.save(DATA_PATH+'balltree_AE_'+str(phase)+'_fnames',fname)
-  
-  tree=BallTree(X,leaf_size=2,metric='l1') #2 leaves are good
-  with open(DATA_PATH+'balltree_AE_'+str(phase)+'.pkl','wb') as f:
-    pickle.dump(tree,f)
-  
-
 class Transient():
-  def __init__(self,ID:str,LC:pd.DataFrame,
-               current_mjd:float=Time(datetime.today()).mjd,survey:str='ZTF_public',
-               out_dir=refitt_loc):
+  def __init__(self,ID:str,LC:pd.DataFrame, out_dir,
+               current_mjd:float=Time(datetime.today()).mjd,survey:str='ZTF_public'):
     """
     REFITT LC class and supporting methods
     
@@ -112,6 +53,7 @@ class Transient():
     LC: dataframe with LC photometry
         columns ['mjd', 'passband', 'mag', 'mag_err']
         index integer
+    out_dir: directory to write forecast json and png to. 
    
     Keyword Arguments:
     ------------------
@@ -119,7 +61,6 @@ class Transient():
                  specify if different from system
     survey: 'ZTF_public'
             currently only type that will work
-    out_dir: directory to write forecast json and png to. 
 
     Examples:
     ---------
@@ -142,10 +83,10 @@ class Transient():
     elif self.phase < 0:
       print("Current mjd {} is lesser than timstamp of oldest photometry. I cannot proceed.".format(self.now))
       self.status=1
-    elif self.phase < horizon:
+    elif self.phase<defs.horizon:
       print("Current mjd {} is lesser than horizon. I am not trained for this. I cannot proceed".format(self.now))
       self.status=2
-    elif self.phase > window:
+    elif self.phase>defs.window:
       print("Current mjd {} is greater than window. I am not trained for this. I cannot proceed".format(self.now))
       self.status=2
     self.LC=LC[LC['mjd']<=self.now]
@@ -181,7 +122,7 @@ class Transient():
       out_dir=os.path.dirname(fname)
       LC=pd.read_json(fname,orient='index',**options).sort_values(by=['mjd'])
       #getattr(pd, f'read_{connector}')(source, **options)
-      return cls(ID,LC,out_dir=out_dir)
+      return cls(ID,LC,out_dir)
   
   def fit_GP(self,k_corr_scale:float=1.) -> pd.DataFrame:
     """
@@ -192,64 +133,15 @@ class Transient():
     mag_err=self.LC['mag_err'].values
     passband=self.LC['passband'].values
     band_pred=get_band_info(self.survey)
-    time_arr=np.arange(self.trigger,self.now+resol,resol)
+    time_arr=np.arange(self.trigger,self.now+defs.resol,defs.resol)
+
     LC_GP=pd.DataFrame(data=np.vstack((
                                        np.repeat(time_arr,len(band_pred)),
                                        np.tile(band_pred,len(time_arr))
                                       )).T,
                        columns=['mjd','passband'])
-
-    def neg_ln_like(p):
-      gp.set_parameter_vector(p)
-      return -gp.log_likelihood(mag)
-
-    def grad_neg_ln_like(p):
-      gp.set_parameter_vector(p)
-      return -gp.grad_log_likelihood(mag)
-  
-    length_scale=20 #changed by J.R.
-    central_wvl={0:357.0,1:476.7,2:621.5,3:754.5,4:870.75,5:1004.0} #for LSST
-    dim=[central_wvl[int(pb)] for pb in passband]
-    signal_to_noise_arr=(np.abs(mag)/
-                        np.sqrt(mag_err**2+(1e-2*np.max(mag))**2))
-    scale=np.abs(mag[signal_to_noise_arr.argmax()])
-    # setup GP model
-    kernel=((0.5*scale)**2*george.kernels.Matern32Kernel( #changed by J.R.
-                                   [length_scale**2,6000**2], ndim=2))
-    kernel.freeze_parameter('k2:metric:log_M_1_1')
-    kernel.freeze_parameter('k1:log_constant') #Fixed Scale
-    x_data=np.vstack([time,dim]).T
-    gp=george.GP(kernel,mean=biweight_location(mag)) #changed by J.R.
-    guess_parameters=gp.get_parameter_vector()
-    # train
-    gp.compute(x_data,mag_err)
-    result=minimize(neg_ln_like,
-                    gp.get_parameter_vector(),
-                    jac=grad_neg_ln_like)
-    gp.set_parameter_vector(result.x)
-    #predict
-    ts_pred=np.zeros((LC_GP.shape[0],2))
-    ts_pred[:,0]=LC_GP['mjd']
-    ts_pred[:,1]=LC_GP['passband'].map(central_wvl)*k_corr_scale
-    LC_GP['mag'],mag_var=gp.predict(mag,ts_pred,return_var=True)
-    LC_GP['mag_err']=np.sqrt(mag_var)
+    GP_predict_ts(time,mag,mag_err,passband,LC_GP,k_corr_scale)
     return LC_GP
-
-  def get_flux(self):
-    """
-    helper function to get fluxes from LC magnitudes using ZTF zero-points
-    """
-    flux=10.**((self.LC['mag']-self.LC['passband'].map(band_name_dict).map(ZTF_zp_dict))/-2.5)
-    flux_err=abs(flux*self.LC['mag_err']*(np.log(10.)/2.5))
-    return flux,flux_err
-
-  '''
-  def convert_to_mag(df_LC):
-    df_LC['mag']=(df_LC['passband'].map(band_name_dict).map(ZTF_zp_dict)
-                  -2.5*np.log10(df_LC['flux']))
-    df_LC['mag_err']=abs(2.5*df_LC['flux_err']/(df_LC['flux']*np.log(10.)))
-    return df_LC.drop(columns=['flux','flux_err'])
-  '''
 
   def create_AE_rep(self) -> 'Transient':
     """
@@ -261,7 +153,7 @@ class Transient():
     from keras.applications.xception import preprocess_input
     model=Xception(weights='imagenet',include_top=False,pooling='avg')
     Xception_h,Xception_w=299,299
-    mag_bins=np.linspace(25,bright,Xception_h) #13.6 at 3 sigma
+    mag_bins=np.linspace(25,defs.bright,Xception_h) #13.6 at 3 sigma
     band_list=get_band_info(self.survey)
     if len(band_list)<3:
       num_bands=3
@@ -276,14 +168,14 @@ class Transient():
       bin_means,bin_edges,binnumber=stats.binned_statistic(ts['mjd'],ts['mag'],
                                                            statistic='mean',
                                                            bins=Xception_w,
-                                                           range=[self.trigger-pad,
-                                                                  self.trigger+self.phase+pad])
+                                                           range=[self.trigger-defs.pad,
+                                                                  self.trigger+self.phase+defs.pad])
       bin_errs,bin_edges,binnumber=stats.binned_statistic(ts['mjd'],ts['mag_err'],
                                                           #sigma of addition of two sigmas
-                                                          statistic=lambda x:np.sqrt(np.sum(x**2.))/len(x),
+                                                          statistic=lambda x:np.sqrt(np.sum(np.power(x,2)))/len(x),
                                                           bins=Xception_w,
-                                                          range=[self.trigger-pad,
-                                                                 self.trigger+self.phase+pad])
+                                                          range=[self.trigger-defs.pad,
+                                                                 self.trigger+self.phase+defs.pad])
       bin_means=np.nan_to_num(bin_means)
       bin_errs=np.nan_to_num(bin_errs)
       #for each timestamp bin resolved above, evaluate the gaussian
@@ -314,9 +206,9 @@ class Transient():
            Default=0
 
     '''
-    with open(DATA_PATH+'balltree_AE_'+str(self.phase)+'.pkl','rb') as f:
+    with open(defs.DATA_PATH+'balltree_AE_'+str(self.phase)+'.pkl','rb') as f:
       tree=pickle.load(f)
-    fname=np.load(DATA_PATH+'balltree_AE_'+str(self.phase)+'_fnames.npy')
+    fname=np.load(defs.DATA_PATH+'balltree_AE_'+str(self.phase)+'_fnames.npy')
     dist,ind=tree.query(self.AE_rep[np.newaxis,:],kNN+start)
     #if ((class_info) and (class_info in lib_classes.keys())):
     #   NNs=update_NNs(NNs,kNN,class_info,classifier)
@@ -347,7 +239,7 @@ class Transient():
     TODO: perhaps only provide one?
     '''
     ref_list=ref_list.iloc[:kNN]
-    if (obj_class in lib_classes.keys()): c_max=[DATA_PATH+obj_class+'/train/']
+    if (obj_class in defs.lib_classes.keys()): c_max=[defs.DATA_PATH+obj_class+'/train/']
     else: c_max=ref_list[0].apply(lambda x: str(x).split('train')[0]).mode().values
     c_rel=pd.concat([ref_list[ref_list[0].str.contains(c_str)] for c_str in c_max])
     if reset_index: c_rel=c_rel.reset_index(drop=True)
@@ -372,7 +264,7 @@ class Transient():
     for NN,fl in c_rel.iterrows():
       with open(fl[0]) as f:
         df_LC_NN=pd.read_json(f,orient='index').sort_values(by=['mjd'])
-      NN_obj=Transient(fl[0],df_LC_NN,current_mjd=df_LC_NN['mjd'].min()+window)
+      NN_obj=Transient(fl[0],df_LC_NN,current_mjd=df_LC_NN['mjd'].min()+defs.window)
       shift_x,shift_y=align_CC(self,NN_obj)
       for i,b in enumerate(band_list):
         a_band_ref=NN_obj.LC_GP['passband'].map(lambda x: x==b)
@@ -436,12 +328,12 @@ class Transient():
     >>> fname='/path/to/file/ZTF21abcdefg.json' #or 'ZTF21abcdefg.json
     >>> LC=pd.read_json(fname,orient='index').sort_values(by=['mjd'])
     >>> ID=os.path.basename(os.path.splitext(fname)[0])
-    >>> obj=refitt.Transient(ID,LC) #current_mjd= to use a different time
+    >>> obj=refitt.Transient(ID,LC,'.') #current_mjd= to use a different time
     >>> obj.predict_LC()
 
     """
     k=kNN_at_tst(self)
-    time_predict=np.arange(self.trigger,self.trigger+window+resol,resol)
+    time_predict=np.arange(self.trigger,self.trigger+defs.window+defs.resol,defs.resol)
     self.create_AE_rep().find_NNs(k)
     c_rel,cguess=self.get_class(self.ref_list,k)
     self.cguess=cguess
@@ -466,15 +358,15 @@ class Transient():
     band_list=get_band_info(self.survey)
     mag_mean,mag_sigma=self.mag_predict_mean,self.mag_predict_sigma
     for i,b in enumerate(band_list):
-      preds['phase_'+band_name_dict[b]]=phase_dict[np.sign(
+      preds['phase_'+defs.band_name_dict[b]]=phase_dict[np.sign(
                                                           round((mag_mean[i,future[0][0]]-
-                                                          mag_mean[i,past[0][0]])/resol,1))]
-      preds['next_mag_mean_'+band_name_dict[b]]=mag_mean[i,future[0][0]]
-      preds['next_mag_sigma_'+band_name_dict[b]]=mag_sigma[i,future[0][0]]
+                                                          mag_mean[i,past[0][0]])/defs.resol,1))]
+      preds['next_mag_mean_'+defs.band_name_dict[b]]=mag_mean[i,future[0][0]]
+      preds['next_mag_sigma_'+defs.band_name_dict[b]]=mag_sigma[i,future[0][0]]
       tpeak=self.time_predict[np.argmin(mag_mean[i,:])]
       tpeaklow=self.time_predict[np.argmin(mag_mean[i,:]+mag_sigma[i,:])]
       tpeakhigh=self.time_predict[np.argmin(mag_mean[i,:]-mag_sigma[i,:])]
-      preds['time_to_peak_'+band_name_dict[b]]=[tpeak-self.now,
+      preds['time_to_peak_'+defs.band_name_dict[b]]=[tpeak-self.now,
                                                        tpeakhigh-tpeak,
                                                        tpeaklow-tpeak]
     preds['time_arr']=self.time_predict.tolist()
@@ -482,15 +374,15 @@ class Transient():
     mdc=0.
     for i,b in enumerate(band_list):
         mdc+=np.sum(mag_sigma[i,:])
-        preds['mag_mean_'+band_name_dict[b]]=mag_mean[i,:].tolist()
-        preds['mag_sigma_'+band_name_dict[b]]=mag_sigma[i,:].tolist()
+        preds['mag_mean_'+defs.band_name_dict[b]]=mag_mean[i,:].tolist()
+        preds['mag_sigma_'+defs.band_name_dict[b]]=mag_sigma[i,:].tolist()
     mdmc=mdc/(len(self.time_predict)*len(band_list))
     preds['mdmc']=mdmc
     #computing mean daily observed error
     obs_error=0.
     for j in range(self.LC.shape[0]):
        obs=self.LC.iloc[j,:]
-       idx=int((obs['mjd']-self.trigger)/resol)
+       idx=int((obs['mjd']-self.trigger)/defs.resol)
        obs_error+=abs(mag_mean[band_list.index(obs['passband']),idx]
                       -obs['mag'])
     preds['moe']=obs_error/self.LC.shape[0]
@@ -521,44 +413,44 @@ class Transient():
 
     band_list=get_band_info(self.survey)
     for i,b in enumerate(band_list):
-      mag_mean=np.array(preds['mag_mean_'+band_name_dict[b]])
-      mag_sigma=np.array(preds['mag_sigma_'+band_name_dict[b]])
+      mag_mean=np.array(preds['mag_mean_'+defs.band_name_dict[b]])
+      mag_sigma=np.array(preds['mag_sigma_'+defs.band_name_dict[b]])
       a_band_ref=self.LC['passband'].map(lambda x: x==b)
       sax[i].errorbar(self.LC[a_band_ref]['mjd'],
                       self.LC[a_band_ref]['mag'],
                       yerr=self.LC[a_band_ref]['mag_err'],
-                      fmt='o',c=band_colors[b],ecolor=band_colors[b])
+                      fmt='o',c=defs.band_colors[b],ecolor=defs.band_colors[b])
       try:
         a_band_ref=self.future_LC['passband'].map(lambda x: x==b)
         sax[i].errorbar(self.future_LC[a_band_ref]['mjd'],
            self.future_LC[a_band_ref]['mag'],
            yerr=self.future_LC[a_band_ref]['mag_err'],
-           fmt='o',c=band_colors[b],ecolor=band_colors[b])
+           fmt='o',c=defs.band_colors[b],ecolor=defs.band_colors[b])
       except:
         pass
       ###PREDICTION
       past=np.where(self.time_predict<=self.trigger+self.phase,True,False)
       future=np.where(self.time_predict>=self.trigger+self.phase,True,False)
-      sax[i].plot(self.time_predict[past],mag_mean[past],c=band_colors[b])
+      sax[i].plot(self.time_predict[past],mag_mean[past],c=defs.band_colors[b])
       sax[i].fill_between(self.time_predict[past],
                           mag_mean[past]-mag_sigma[past],
                           mag_mean[past]+mag_sigma[past],
-                          facecolor=band_colors[b],alpha=0.5)
-      sax[i].plot(self.time_predict[future],mag_mean[future],c=band_colors[b],
+                          facecolor=defs.band_colors[b],alpha=0.5)
+      sax[i].plot(self.time_predict[future],mag_mean[future],c=defs.band_colors[b],
                   alpha=0.5)
       sax[i].fill_between(self.time_predict[future],
                           mag_mean[future]-mag_sigma[future],
                           mag_mean[future]+mag_sigma[future],
-                          facecolor=band_colors[b],alpha=0.25)
+                          facecolor=defs.band_colors[b],alpha=0.25)
       sax[i].axvline(x=self.trigger+self.phase,c='k',lw=0.5)
-      sax[i].set_xticks(np.arange(self.trigger,self.trigger+window,10))
+      sax[i].set_xticks(np.arange(self.trigger,self.trigger+defs.window,10))
       sax[i].set_xticklabels(['0','10','20','30','40','50'])
       sax[i].set_xlabel('days since trigger')
       if i%cols==0:
         sax[i].set_ylabel('mag')
       else:
         sax[i].set_yticklabels([])
-      sax[i].set_xlim(self.trigger-pad,self.trigger+window)
+      sax[i].set_xlim(self.trigger-defs.pad,self.trigger+defs.window)
       ymin,ymax=sax[i].get_ylim()
       ylow.append(ymin)
       yhigh.append(ymax)
@@ -566,12 +458,12 @@ class Transient():
       sax[i].set_ylim(max(yhigh),min(ylow))
       sax[i].annotate('observed',xy=(0.05,0.05), xycoords='axes fraction',size=7)
       sax[i].annotate('predicted',xy=(0.8,0.05), xycoords='axes fraction',size=7)
-      sax[i].annotate(band_name_dict[b],xy=(0.9,0.9),
-                      xycoords='axes fraction',color=band_colors[b])
+      sax[i].annotate(defs.band_name_dict[b],xy=(0.9,0.9),
+                      xycoords='axes fraction',color=defs.band_colors[b])
       sax[i].grid(lw=0.1,color='grey')
       twin_sax0=sax[i].twiny()
-      twin_sax0.set_xlim(self.trigger-pad,self.trigger+window)
-      dates=np.arange(math.ceil(self.trigger/10)*10,math.floor(self.trigger+window),10)
+      twin_sax0.set_xlim(self.trigger-defs.pad,self.trigger+defs.window)
+      dates=np.arange(math.ceil(self.trigger/10)*10,math.floor(self.trigger+defs.window),10)
       twin_sax0.set_xticks(dates)
       #twin_sax0.set_xticklabels(Time(dates,format='mjd',out_subfmt='date').iso,rotation=45,ha='left')
       twin_sax0.set_xticklabels(Time(
@@ -581,6 +473,43 @@ class Transient():
       twin_sax0.get_xaxis().tick_top()
     fig.savefig(self.out_dir+'/'+self.ID+'_prediction.png')
     plt.close()
+    return
+
+def GP_predict_ts(time,mag,mag_err,passband,LC_GP,k_corr_scale):
+    def neg_ln_like(p):
+      gp.set_parameter_vector(p)
+      return -gp.log_likelihood(mag)
+
+    def grad_neg_ln_like(p):
+      gp.set_parameter_vector(p)
+      return -gp.grad_log_likelihood(mag)
+
+    length_scale=20 #changed by J.R.
+    central_wvl={0:357.0,1:476.7,2:621.5,3:754.5,4:870.75,5:1004.0} #for LSST
+    dim=[central_wvl[int(pb)] for pb in passband]
+    signal_to_noise_arr=(np.abs(mag)/
+                        np.sqrt(mag_err**2+(1e-2*np.max(mag))**2))
+    scale=np.abs(mag[signal_to_noise_arr.argmax()])
+    # setup GP model
+    kernel=((0.5*scale)**2*george.kernels.Matern32Kernel( #changed by J.R.
+                                   [length_scale**2,6000**2], ndim=2))
+    kernel.freeze_parameter('k2:metric:log_M_1_1')
+    kernel.freeze_parameter('k1:log_constant') #Fixed Scale
+    x_data=np.vstack([time,dim]).T
+    gp=george.GP(kernel,mean=biweight_location(mag)) #changed by J.R.
+    guess_parameters=gp.get_parameter_vector()
+    # train
+    gp.compute(x_data,mag_err)
+    result=minimize(neg_ln_like,
+                    gp.get_parameter_vector(),
+                    jac=grad_neg_ln_like)
+    gp.set_parameter_vector(result.x)
+    #predict
+    ts_pred=np.zeros((LC_GP.shape[0],2))
+    ts_pred[:,0]=LC_GP['mjd']
+    ts_pred[:,1]=LC_GP['passband'].map(central_wvl)*k_corr_scale
+    LC_GP['mag'],mag_var=gp.predict(mag,ts_pred,return_var=True)
+    LC_GP['mag_err']=np.sqrt(mag_var)
     return
  
 #deprecated for ZTF: uncomment tslearn.metrics to use
@@ -640,11 +569,11 @@ def align_CC(transient1,transient2):
 
     cc_val=[]
     cc_del=[]
-    lag_values=np.arange(-1.*transient1.phase+resol,window,resol)
+    lag_values=np.arange(-1.*transient1.phase+defs.resol,defs.window,defs.resol)
     cc_arr=signal.correlate(mag_mean_obs,mag_mean_ref)
     cc_del=lag_values[np.argmax(cc_arr)] #in mjd
     delta_t[i]=transient2.trigger-transient1.trigger+cc_del
-    delta_mag[i]=np.amin(mag_mean_ref[:math.ceil((transient1.phase+cc_del)/resol)])-np.amin(mag_mean_obs) 
+    delta_mag[i]=np.amin(mag_mean_ref[:math.ceil((transient1.phase+cc_del)/defs.resol)])-np.amin(mag_mean_obs) 
   shift_x=np.mean(delta_t)
   shift_y=np.mean(delta_mag)
   return shift_x,shift_y
@@ -656,7 +585,7 @@ def kNN_at_tst(transient):
   '''
   fname={'LSST':'k_optimal.json',
          'ZTF_public':'kNN_optimal.json'}
-  with open(DATA_PATH+fname[transient.survey], 'r') as f:
+  with open(defs.DATA_PATH+fname[transient.survey], 'r') as f:
     k_opt_dict=json.load(f)
   kNN=k_opt_dict[str(transient.phase)]
   return kNN

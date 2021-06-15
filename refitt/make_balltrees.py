@@ -1,17 +1,17 @@
 import numpy as np
 import pandas as pd
 import os, sys, glob
-import refitt 
+from refitt import defs
 import json
 import subprocess
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 qname='physics'
-threads=23
+threads=24
 runs=''
 sc_name='make_balltrees'
-for phase in range(refitt.horizon,refitt.window+1):
-  runs+='python -c "import refitt; refitt.'+sc_name+'('+str(phase)+')"\n'
+for phase in range(defs.horizon,defs.window+1):
+  runs+='python -c "from refitt import utils; utils.'+sc_name+'('+str(phase)+')"\n'
 
 with open(dir_path+'/'+sc_name+'_list', 'w') as f:
    f.writelines(runs)
@@ -22,9 +22,9 @@ JOBSCRIPT=f"""#!/bin/sh -l
 #SBATCH -n {threads}
 #SBATCH -t 8-00:00:00
 
-export PATH="~/.linuxbrew/bin:$PATH"
-module load learning/conda-5.1.0-py36-cpu
-module load ml-toolkit-cpu/keras/2.1.5
+cd {dir_path}
+module load anaconda/5.1.0-py36
+source activate /depot/cassiopeia/data/ari/refitt/envs
 cat {dir_path}/{sc_name}_list | parallel -j{threads-1} {{}}
 """
 

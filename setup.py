@@ -9,11 +9,11 @@ setup(
     install_requires=['pandas',
                       'scikit-learn',
                       'matplotlib',
-                      'antares-client',
                       'elasticsearch-dsl',
                       'keras',
                       'george',
                       'sncosmo',
                       'sfdmap',
-                      'iminuit']
+                      'iminuit',
+                      'antares-client']
 )

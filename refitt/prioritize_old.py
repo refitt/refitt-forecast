@@ -7,9 +7,10 @@
 import numpy as np
 import pandas as pd
 import os, sys, shutil, glob
-import refitt
 import json
 import pdb
+from refitt import defs
+from refitt import kernel
 
 event_folder=str(sys.argv[1]) #full path
 cols=['object','band','moe','mag','mag_err','tpeak','plus_uncer','min_tpeak']
@@ -19,13 +20,13 @@ for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_fold
     preds=json.load(f)
   #if ((preds['time_since_trigger']<6.)):# or 
   instrument=preds['instrument']
-  band_list=refitt.get_band_info(instrument)
+  band_list=kernel.get_band_info(instrument)
   for i,b in enumerate(band_list):
-    tpeak=preds['time_to_peak_'+refitt.band_name_dict[b]]
+    tpeak=preds['time_to_peak_'+defs.band_name_dict[b]]
     if (preds['moe']<1. and abs(round(tpeak[0]))<=14.): # meant to be conservative
-      df=pd.concat([df,pd.DataFrame([[preds['ztf_id'],refitt.band_name_dict[b],preds['moe'],
-                  preds['next_mag_mean_'+refitt.band_name_dict[b]],
-                  preds['next_mag_sigma_'+refitt.band_name_dict[b]],
+      df=pd.concat([df,pd.DataFrame([[preds['ztf_id'],defs.band_name_dict[b],preds['moe'],
+                  preds['next_mag_mean_'+defs.band_name_dict[b]],
+                  preds['next_mag_sigma_'+defs.band_name_dict[b]],
                   abs(round(tpeak[0])),abs(round(2*tpeak[1])/2.),
                   -1.*np.sign(tpeak[0]+tpeak[2])]],columns=cols)])
 

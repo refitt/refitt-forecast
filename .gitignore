@@ -1,8 +1,11 @@
+envs/
 refitt/data/*
 !refitt/data/lib_gen
 refitt/data/lib_gen/train_lcs
+refitt/data/lib_gen/slurm*
 refitt/ZTF/
-envs/
+refitt/debug/
 refitt.egg-info/
-slurm*
-*.sub
+refitt/slurm*
+refitt/*.sub
+refitt/*_list

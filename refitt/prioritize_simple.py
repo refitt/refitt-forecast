@@ -1,10 +1,11 @@
 import numpy as np
 import pandas as pd
 import os, sys, shutil, glob
-import refitt
 import json
 import pdb
-import refitt.utils as utils
+from refitt import utils
+from refitt import defs
+from refitt import kernel
 
 event_folder=str(sys.argv[1]) #full path
 cols=['object','band','moe','magg','magr','tpeak','plus_uncer','min_tpeak','class','sig',
@@ -13,12 +14,12 @@ df=pd.DataFrame(columns=cols)
 for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_folder):
   with open(fname, 'r') as f:
     preds=json.load(f)
-  band_list=refitt.get_band_info(preds['instrument'])
+  band_list=kernel.get_band_info(preds['instrument'])
   df_LC=pd.read_json(event_folder+'/'+preds['ztf_id']+'.json',orient='index').sort_values(by=['mjd'])
   for i,b in enumerate(band_list):
-    tpeak=preds['time_to_peak_'+refitt.band_name_dict[b]]
+    tpeak=preds['time_to_peak_'+defs.band_name_dict[b]]
     df=pd.concat([df,pd.DataFrame([[
-                  preds['ztf_id'],refitt.band_name_dict[b],preds['moe'],
+                  preds['ztf_id'],defs.band_name_dict[b],preds['moe'],
                   preds['next_mag_mean_g'],preds['next_mag_mean_r'],
                   abs(round(tpeak[0])),abs(round(2*tpeak[1])/2.),
                   -1.*np.sign(tpeak[0]+tpeak[2]),preds['class'][0],preds['class'][1],

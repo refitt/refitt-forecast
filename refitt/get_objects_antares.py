@@ -6,21 +6,17 @@ from antares_client.search import search
 from antares_client.search import get_by_id
 import marshmallow
 
-import refitt.utils as utils
-
-min_photo=3
-window=60 #window of action
-gap=21
-band_name_dict={'g':1,'R':2}
+from refitt import utils
+from refitt import defs
 
 dest=str(sys.argv[1]) # is folder for destination
 now=float(sys.argv[2])
 
 query = (
     Search()
-    .filter("range", **{"properties.num_mag_values": {"gte": min_photo}})
-    .filter("range", **{"properties.newest_alert_observation_time": {"gte": now-gap}})#, "lte": now}})
-    .filter("range", **{"properties.oldest_alert_observation_time": {"gte": now-window}})
+    .filter("range", **{"properties.num_mag_values": {"gte": defs.min_photo}})
+    .filter("range", **{"properties.newest_alert_observation_time": {"gte": now-defs.gap}})#, "lte": now}})
+    .filter("range", **{"properties.oldest_alert_observation_time": {"gte": now-defs.window}})
     .filter("term", tags="refitt_newsources_snrcut")
     .to_dict()
 )
@@ -31,7 +27,7 @@ while True:
     for locus in search(query):
       df_LC=locus.lightcurve
       df_ts=df_LC[df_LC['ant_survey']==1][['ant_mjd','ant_mag','ant_magerr','ant_passband']]
-      df_ts['ant_passband']=df_ts['ant_passband'].replace(band_name_dict)
+      df_ts['ant_passband']=df_ts['ant_passband'].replace(defs.band_name_dict)
       ztf_id=locus.properties['ztf_object_id']
       df_ts['event_id']=ztf_id
       df_ts=df_ts.reset_index(drop=True).sort_values(by='ant_mjd').rename(columns={'ant_mjd':'mjd',
@@ -40,7 +36,7 @@ while True:
                                                                                    'ant_magerr':'mag_err'})
       age=now-df_ts['mjd'].min()
       obs_diff=[(group['mjd'].diff()>0.2).any() for pb,group in df_ts.groupby('passband')]
-      if ((age<=window) and any(obs_diff)):
+      if ((age<=defs.window) and any(obs_diff)):
         meta={}
         meta['ra']=locus.ra
         meta['dec']=locus.dec

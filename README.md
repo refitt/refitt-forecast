@@ -11,13 +11,13 @@
 - tslearn (optional)
 
 ### Prep
-after cloning pip install .
+pip install .
 tar xzf data/lib_gen/train_lcs.tar.gz -C data/lib_gen
 
 ### Generate Library
-Run make_library_ZTF.py in place
-This will generate training LCs in data/class
-time to gen
+Run make_library_ZTF.py in place using submit_make_library_ZTF.py
+This will generate training LCs under data/class
+Takes 2.5hrs for Ia and <1hr for rest
 
 ### Training
 1. Build CAE reps for each library LC from horizon-window days by running make_reps.py.

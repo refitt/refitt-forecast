@@ -1,9 +1,8 @@
-#this code makes several calls to refitt's create_AE_rep function in parallel
-
 import numpy as np
 import pandas as pd
 import os, sys, glob
-import refitt 
+from refitt import defs
+from refitt import kernel
 import json
 import subprocess
 
@@ -12,17 +11,18 @@ qname='physics'
 threads=24
 runs=''
 sc_name='make_reps'
-for phase in range(1,31):#refitt.horizon,refitt.window+1):
-  library_loc=refitt.select_library('ZTF_public',phase)
-  for c in refitt.lib_classes.keys():
-     if not os.path.exists(refitt.DATA_PATH+c+'/'+library_loc):
-        os.makedirs(refitt.DATA_PATH+c+'/'+library_loc)
-     for event in glob.glob(refitt.DATA_PATH+c+'/train/*.json'):
-        name=(refitt.DATA_PATH+c+'/'+library_loc+'/'+
+survey='ZTF_public'
+for phase in range(defs.horizon,21):#defs.window+1):
+  library_loc=kernel.select_library(survey,phase)
+  for c in defs.lib_classes.keys():
+     if not os.path.exists(defs.DATA_PATH+c+'/'+library_loc):
+        os.makedirs(defs.DATA_PATH+c+'/'+library_loc)
+     for event in glob.glob(defs.DATA_PATH+c+'/*.json'):
+        name=(defs.DATA_PATH+c+'/'+library_loc+'/'+
                 os.path.basename(event).split('.')[0]+'_Xception')
-        runs+="python -c \"import refitt; import pandas as pd; import numpy as np; " 
+        runs+="python -c \"from refitt import kernel; import pandas as pd; import numpy as np; " 
         runs+="LC=pd.read_json('"+event+"',orient='index').sort_values(by=['mjd']); "
-        runs+="obj=refitt.Transient('"+event+"',LC,current_mjd=LC['mjd'].min()+"+str(phase)+"); "
+        runs+="obj=kernel.Transient('"+event+"',LC,'"+defs.DATA_PATH+c+"/"+library_loc+"',current_mjd=LC['mjd'].min()+"+str(phase)+"); "
         runs+="obj.create_AE_rep(); "
         runs+="np.save('"+name+"',obj.AE_rep)\"\n"
 
@@ -35,9 +35,9 @@ JOBSCRIPT=f"""#!/bin/sh -l
 #SBATCH -n {threads}
 #SBATCH -t 8-00:00:00
 
-export PATH="~/.linuxbrew/bin:$PATH"
-module load learning/conda-5.1.0-py36-cpu
-module load ml-toolkit-cpu/keras/2.1.5
+cd {dir_path}
+module load anaconda/5.1.0-py36
+source activate /depot/cassiopeia/data/ari/refitt/envs
 cat {dir_path}/{sc_name}_list | parallel -j{threads-1} {{}}
 """
 with open(dir_path+'/'+sc_name+'.sub', 'w') as f:
