@@ -21,11 +21,11 @@ Takes 2.5hrs for Ia and <1hr for rest
 
 ### Training
 1. Build CAE reps for each library LC from horizon-window days by running make_reps.py.
-takes 5-6 hours per epoch (5000 sims per class) on 1 full brown node
+takes ~11-15 hours per epoch on 1 full brown node
 
 2. Make ball trees by running make_balltrees.py
-takes ~2 hours per epoch and can be run in parallel
-Caution: Each balltree is >1GB
+takes ~5-6 hours per epoch (per core) and can be run in parallel
+Caution: Each balltree is 2.2GB
 
 3. Find k for each integer time since trigger
 run find_kNN.py via submit_find_kNN.py 
@@ -35,6 +35,10 @@ takes 4 days per epoch but can be run in parallel
 Useful to examine loss in obj.png
 Loss curves are not converged for less than 9 days since trigger
 Overall results are only reliable after 10 days since trigger – hardsetting to 10’s k for earlier times
+
+## Data files for above
+One only needs the training LCs, balltree_AE_*, obj_*, and optimal_kNN files to run. 
+These files are large and therefore not included here but can be made available on request.
 
 ## Running live
 Simply execute run.py

@@ -8,8 +8,8 @@ from astropy.time import Time
 from datetime import datetime, timedelta
 from refitt import utils
 
-qname='refitt'
-wt={'refitt':'1:00','standby':'1:00','debug':'30'}
+qname='standby'
+wt={'refitt':'2:00','standby':'2:00','debug':'30'}
 threads=24
 
 def run_refitt():
@@ -28,12 +28,10 @@ def run_refitt():
 #SBATCH -n {threads}
 #SBATCH -t {wt[qname]}:00
 
-export PATH="~/.linuxbrew/bin:$PATH"
-
 cd {dir_path}
+module load anaconda/5.1.0-py36
+source activate /depot/cassiopeia/data/ari/refitt/envs
 python get_objects_antares.py {dest} {now}
-module load learning/conda-5.1.0-py36-cpu
-module load ml-toolkit-cpu/keras/2.1.5
 ls {dest}/*.json | parallel -j{threads-1} 'python kernel.py {{}}'
 ls {dest}/*_prediction.json | parallel -j{threads-1} 'python make_bandwise_jsons.py {{}}'
 python baseline.py {dest} {now}

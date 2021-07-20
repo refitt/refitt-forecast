@@ -27,7 +27,7 @@ while True:
     for locus in search(query):
       df_LC=locus.lightcurve
       df_ts=df_LC[df_LC['ant_survey']==1][['ant_mjd','ant_mag','ant_magerr','ant_passband']]
-      df_ts['ant_passband']=df_ts['ant_passband'].replace(defs.band_name_dict)
+      df_ts['ant_passband']=df_ts['ant_passband'].replace(defs.antares_band_name_dict)
       ztf_id=locus.properties['ztf_object_id']
       df_ts['event_id']=ztf_id
       df_ts=df_ts.reset_index(drop=True).sort_values(by='ant_mjd').rename(columns={'ant_mjd':'mjd',

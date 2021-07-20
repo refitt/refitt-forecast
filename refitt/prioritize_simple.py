@@ -8,8 +8,10 @@ from refitt import defs
 from refitt import kernel
 
 event_folder=str(sys.argv[1]) #full path
-cols=['object','band','moe','magg','magr','tpeak','plus_uncer','min_tpeak','class','sig',
-     'mdmc','del_mag','bright']
+cols=['object','band','moe','mdmc','magg','magr',
+      'tpeak','size_uncer','min_tpeak',
+      'class','sig',
+      'del_mag','bright']
 df=pd.DataFrame(columns=cols)
 for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_folder):
   with open(fname, 'r') as f:
@@ -19,23 +21,27 @@ for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_fold
   for i,b in enumerate(band_list):
     tpeak=preds['time_to_peak_'+defs.band_name_dict[b]]
     df=pd.concat([df,pd.DataFrame([[
-                  preds['ztf_id'],defs.band_name_dict[b],preds['moe'],
-                  preds['next_mag_mean_g'],preds['next_mag_mean_r'],
-                  abs(round(tpeak[0])),abs(round(2*tpeak[1])/2.),
-                  -1.*np.sign(tpeak[0]+tpeak[2]),preds['class'][0],preds['class'][1],
-                  round(preds['mdmc'],1),round(max(
-                  [(group['mag'].max()-group['mag'].min()) for pb,group in df_LC.groupby('passband')])
-                  ,1),df_LC['mag'].min()]],columns=cols)])
+                        preds['ztf_id'],defs.band_name_dict[b],
+                        preds['moe'],round(preds['mdmc'],1),
+                        preds['next_mag_mean_g'],preds['next_mag_mean_r'],
+                        abs(round(tpeak[0])),abs(round(2*(tpeak[1]-tpeak[2]))/2.), #size of uncertainity
+                        -1.*np.sign(tpeak[2]), #whether entered plausible range; is made neg to use sorting
+                        preds['class'][0],preds['class'][1],
+                        round(max([(group['mag'].max()-group['mag'].min())
+                                 for pb,group in df_LC.groupby('passband')
+                                 ]),1), #max mag change in all band
+                        df_LC['mag'].min()
+                                   ]],columns=cols)])
 
 # Prioritize things near peak (grouped by 1 day) with small uncertainity (grouped by 12 hours)
 # and minpeak still to occur with small observed error
 # also, moe<0.5 and tpeak<7.
-df_peak=df[(df['moe']<0.5) & (df['tpeak']<=7.) & (df['plus_uncer']<=14.)] # meant to be conservative
-df_peak=df_peak.groupby(['tpeak','plus_uncer','min_tpeak'],sort=True).apply(
+df_peak=df[(df['moe']<0.5) & (df['tpeak']<=7.) & (df['size_uncer']<=14.)] # meant to be conservative
+df_peak=df_peak.groupby(['tpeak','size_uncer','min_tpeak'],sort=True).apply(
                                  lambda x: x.sort_values(['moe'])).reset_index(drop=True)
 df_peak.index+=1
 with open(event_folder+'/priority/peak.csv','w') as f:
-  df_peak.to_csv(f,columns=['object','band','tpeak','plus_uncer','min_tpeak','moe'],index_label='rank')
+  df_peak.to_csv(f,columns=['object','band','tpeak','size_uncer','min_tpeak','moe'],index_label='rank')
 
 # Objects with high confidence classifiation and small observed error
 df_class=df[(df['moe']<0.5)]

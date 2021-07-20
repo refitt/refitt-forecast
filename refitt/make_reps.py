@@ -7,12 +7,12 @@ import json
 import subprocess
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-qname='physics'
+qname='refitt'
 threads=24
 runs=''
 sc_name='make_reps'
 survey='ZTF_public'
-for phase in range(defs.horizon,21):#defs.window+1):
+for phase in range(50,defs.window+1): #defs.horizon
   library_loc=kernel.select_library(survey,phase)
   for c in defs.lib_classes.keys():
      if not os.path.exists(defs.DATA_PATH+c+'/'+library_loc):

@@ -6,7 +6,7 @@ import json
 import subprocess
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-qname='physics'
+qname='refitt'
 threads=24
 runs=''
 sc_name='make_balltrees'

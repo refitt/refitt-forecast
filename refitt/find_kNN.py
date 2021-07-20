@@ -5,8 +5,7 @@ import numpy as np
 import pandas as pd
 import json,pickle
 import os,sys,glob,pdb
-from refitt import defs
-from refitt import kernel
+from refitt import defs, kernel
 
 phase=int(sys.argv[1])
 kmax=50
@@ -17,11 +16,11 @@ for i,k in enumerate(k_arr):
 
 library_loc=kernel.select_library('ZTF_public',phase)
 fnames=np.load(defs.DATA_PATH+'balltree_AE_'+str(phase)+'_fnames.npy')
-for n,fl in enumerate(fnames):#np.random.choice(fnames,size=round(10*len(fnames)/100))):
+for n,fl in enumerate(np.random.choice(fnames,size=round(20*len(fnames)/100))):
   df_LC=pd.read_json(fl,orient='index').sort_values(by=['mjd'])
-  obj=kernel.Transient(fl,df_LC,current_mjd=df_LC['mjd'].min()+phase)
+  obj=kernel.Transient(fl,df_LC,os.path.dirname(fl),current_mjd=df_LC['mjd'].min()+phase)
   time_predict=np.arange(obj.trigger,obj.trigger+defs.window+defs.resol,defs.resol)
-  AE_fl=fl.split('train')[0]+library_loc+'/'+os.path.basename(fl).split('.')[0]+'_Xception.npy'
+  AE_fl=os.path.dirname(fl)+'/'+library_loc+'/'+os.path.basename(fl).split('.')[0]+'_Xception.npy'
   obj.AE_rep=np.load(AE_fl)
   obj.find_NNs(kmax,start=1).predict_kNN(time_predict,obj.ref_list)
   for i,k in enumerate(k_arr):
@@ -30,7 +29,7 @@ for n,fl in enumerate(fnames):#np.random.choice(fnames,size=round(10*len(fnames)
     c_rel_ind=np.zeros(obj.ref_list.shape[0],dtype=bool) 
     c_rel_ind[c_rel.index.values]=True
     obj.summarize_kNN(c_rel_ind)
-    if obj.status>90:
+    if obj.status==0:
       error_metric_mtmc=0.
       for j, obs in df_LC.iterrows():
         color_i=int(obs['passband'])-1

@@ -27,8 +27,8 @@ for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_fold
       df=pd.concat([df,pd.DataFrame([[preds['ztf_id'],defs.band_name_dict[b],preds['moe'],
                   preds['next_mag_mean_'+defs.band_name_dict[b]],
                   preds['next_mag_sigma_'+defs.band_name_dict[b]],
-                  abs(round(tpeak[0])),abs(round(2*tpeak[1])/2.),
-                  -1.*np.sign(tpeak[0]+tpeak[2])]],columns=cols)])
+                  abs(round(tpeak[0])),abs(round(2*(tpeak[1]-tpeak[2]))/2.),
+                  -1.*np.sign(tpeak[2])]],columns=cols]],columns=cols)])
 
 df=df[(df['moe']<0.5) & (df['tpeak']<=7.) & (df['plus_uncer']<=14.)]
 df=df.groupby(['tpeak','plus_uncer','min_tpeak'],sort=True).apply(

@@ -3,10 +3,12 @@ from email.utils import COMMASPACE, formatdate
 from email.mime.text import MIMEText
 import smtplib
 from datetime import datetime
-import os
+import os,sys,glob
 import numpy as np
-import refitt
-from refitt import defs
+import pickle
+from sklearn.neighbors import BallTree
+
+from refitt import defs, kernel
 
 def email(text):
   server="127.0.0.1"

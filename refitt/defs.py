@@ -12,10 +12,11 @@ gap=21 #maximum lapse since last photometry
 pad=2. #for plotting and CAE
 resol=0.02 #GP, CC alignment and moe
 
-ZTF_zp_dict={1:26.325,2:26.275} #from ZSDS_explanatory pg 67
+ZTF_zp_dict={1:26.325,2:26.275,3:25.660} #from ZSDS_explanatory pg 67
 band_name_dict={0:'u',1:'g',2:'r',3:'i',4:'z',5:'y'}
-sncosmo_band_name_dict={1:'ztfg',2:'ztfr'}
-band_colors={1:'limegreen',2:'orangered'}#,'goldenrod','limegreen','darkturquoise',
+sncosmo_band_name_dict={1:'ztfg',2:'ztfr',3:'ztfi'}
+antares_band_name_dict={'g':1,'R':2}
+band_colors={1:'limegreen',2:'orangered',3:'goldenrod'}#,'limegreen','darkturquoise',
              #'mediumslateblue','orchid']
 lib_classes={
     'Ia':{'logz_bins':np.arange(-2.7,-0.69,0.1),'method':'Ia'},

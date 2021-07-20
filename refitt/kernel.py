@@ -23,7 +23,6 @@ import itertools
 from astropy.stats import biweight_location
 from astropy.time import Time
 from datetime import datetime
-from sklearn.neighbors import BallTree
 
 from refitt import defs
 
@@ -42,7 +41,7 @@ def get_band_info(survey) -> list:
   return band_list
 
 class Transient():
-  def __init__(self,ID:str,LC:pd.DataFrame, out_dir,
+  def __init__(self,ID:str,LC:pd.DataFrame,out_dir,
                current_mjd:float=Time(datetime.today()).mjd,survey:str='ZTF_public'):
     """
     REFITT LC class and supporting methods
@@ -77,7 +76,7 @@ class Transient():
     self.out_dir=out_dir
     self.now=current_mjd
     self.trigger=LC['mjd'].min()
-    self.phase=round(self.now-self.trigger)
+    self.phase=int(self.now-self.trigger)
     if self.now < LC['mjd'].max():
       logging.warning("Current mjd {} is lesser than timestamp of most recent photometry.".format(self.now))
     elif self.phase < 0:
@@ -239,11 +238,11 @@ class Transient():
     TODO: perhaps only provide one?
     '''
     ref_list=ref_list.iloc[:kNN]
-    if (obj_class in defs.lib_classes.keys()): c_max=[defs.DATA_PATH+obj_class+'/train/']
-    else: c_max=ref_list[0].apply(lambda x: str(x).split('train')[0]).mode().values
+    if (obj_class in defs.lib_classes.keys()): c_max=[defs.DATA_PATH+obj_class]
+    else: c_max=ref_list[0].apply(lambda x: os.path.dirname(str(x))).mode().values
     c_rel=pd.concat([ref_list[ref_list[0].str.contains(c_str)] for c_str in c_max])
     if reset_index: c_rel=c_rel.reset_index(drop=True)
-    cguess=[os.path.basename(os.path.dirname(c)) for c in c_max]
+    cguess=[os.path.basename(c) for c in c_max]
     cguess=[cguess,c_rel.shape[0]/(ref_list.shape[0]*len(cguess))]
     return c_rel,cguess
   
@@ -264,7 +263,7 @@ class Transient():
     for NN,fl in c_rel.iterrows():
       with open(fl[0]) as f:
         df_LC_NN=pd.read_json(f,orient='index').sort_values(by=['mjd'])
-      NN_obj=Transient(fl[0],df_LC_NN,current_mjd=df_LC_NN['mjd'].min()+defs.window)
+      NN_obj=Transient(fl[0],df_LC_NN,os.path.dirname(fl[0]),current_mjd=df_LC_NN['mjd'].min()+defs.window)
       shift_x,shift_y=align_CC(self,NN_obj)
       for i,b in enumerate(band_list):
         a_band_ref=NN_obj.LC_GP['passband'].map(lambda x: x==b)
@@ -328,8 +327,8 @@ class Transient():
     >>> fname='/path/to/file/ZTF21abcdefg.json' #or 'ZTF21abcdefg.json
     >>> LC=pd.read_json(fname,orient='index').sort_values(by=['mjd'])
     >>> ID=os.path.basename(os.path.splitext(fname)[0])
-    >>> obj=refitt.Transient(ID,LC,'.') #current_mjd= to use a different time
-    >>> obj.predict_LC()
+    >>> sn=refitt.Transient(ID,LC,'.') #current_mjd= to use a different time
+    >>> sn.predict_LC()
 
     """
     k=kNN_at_tst(self)
@@ -367,8 +366,8 @@ class Transient():
       tpeaklow=self.time_predict[np.argmin(mag_mean[i,:]+mag_sigma[i,:])]
       tpeakhigh=self.time_predict[np.argmin(mag_mean[i,:]-mag_sigma[i,:])]
       preds['time_to_peak_'+defs.band_name_dict[b]]=[tpeak-self.now,
-                                                       tpeakhigh-tpeak,
-                                                       tpeaklow-tpeak]
+                                                    max(tpeakhigh-tpeak,tpeaklow-tpeak),
+                                                    min(tpeakhigh-tpeak,tpeaklow-tpeak)]
     preds['time_arr']=self.time_predict.tolist()
     #computing mean daily model confidence
     mdc=0.
@@ -631,5 +630,7 @@ def update_NNs(NNs,k,c,classifier):
 
 if __name__ == '__main__':
   fname=str(sys.argv[1])
-  Transient.from_file(fname).predict_LC() # make prediction for system time
+  obj=Transient.from_file(fname)
+  if obj.status==0:
+    obj.predict_LC() # make prediction for system time
 

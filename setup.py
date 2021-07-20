@@ -6,14 +6,15 @@ setup(
     packages=find_packages(),#include=['refitt']),
     author='Niharika Sravan',
     author_email='niharika.sravan@gmail.com',
-    install_requires=['pandas',
+    install_requires=['matplotlib',
+                      'pandas',
+                      'astropy',
                       'scikit-learn',
-                      'matplotlib',
                       'elasticsearch-dsl',
+                      'iminuit',
                       'keras',
                       'george',
                       'sncosmo',
                       'sfdmap',
-                      'iminuit',
                       'antares-client']
 )
