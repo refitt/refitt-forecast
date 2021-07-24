@@ -18,7 +18,6 @@ df=pd.DataFrame(columns=cols)
 for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_folder):
   with open(fname, 'r') as f:
     preds=json.load(f)
-  #if ((preds['time_since_trigger']<6.)):# or 
   instrument=preds['instrument']
   band_list=kernel.get_band_info(instrument)
   for i,b in enumerate(band_list):
@@ -27,9 +26,9 @@ for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_fold
                   preds['next_mag_mean_'+defs.band_name_dict[b]],
                   preds['next_mag_sigma_'+defs.band_name_dict[b]],
                   abs(round(tpeak[0])),abs(round(2*(tpeak[1]-tpeak[2]))/2.),
-                  -1.*np.sign(tpeak[2])]],columns=cols]],columns=cols)])
+                  -1.*np.sign(tpeak[2])]],columns=cols)])
 
-df=df[(df['moe']<0.5) & (df['tpeak']<=7.) & (df['plus_uncer']<=14.)]
+df=df[(df['moe']<0.5) & (df['tpeak']<=7.) & (df['size_uncer']<=14.)]
 df=df.groupby(['tpeak','size_uncer','min_tpeak'],sort=True).apply(
                                  lambda x: x.sort_values(['moe'])).reset_index(drop=True)
 df.index+=1

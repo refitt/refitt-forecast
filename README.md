@@ -55,6 +55,6 @@ This means you can skip generating the library and training (above).
 - loss is L1 error on full forecast
 
 ### Laundry list:
-- Forecasts for bright transients and decaying transients is not good
+- Forecasts for bright transients is not good
 - Use host info (redshift, offset, morphology)
 
