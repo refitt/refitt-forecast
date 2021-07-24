@@ -12,59 +12,49 @@
 
 ### Prep
 pip install .
+
 tar xzf data/lib_gen/train_lcs.tar.gz -C data/lib_gen
 
 ### Generate Library
-Run make_library_ZTF.py in place using submit_make_library_ZTF.py
-This will generate training LCs under data/class
-Takes 2.5hrs for Ia and <1hr for rest
+Run make_library_ZTF.py in place using submit_make_library_ZTF.py.
+This will generate training LCs under data/class. Takes 2.5hrs for Ia and <1hr for rest
 
 ### Training
-1. Build CAE reps for each library LC from horizon-window days by running make_reps.py.
+1. Build CAE reps for each library LC by running make_reps.py.
 takes ~11-15 hours per epoch on 1 full brown node
 
-2. Make ball trees by running make_balltrees.py
+2. Make ball trees by running make_balltrees.py.
 takes ~5-6 hours per epoch (per core) and can be run in parallel
-Caution: Each balltree is 2.2GB
 
-3. Find k for each integer time since trigger
-run find_kNN.py via submit_find_kNN.py 
-takes 4 days per epoch but can be run in parallel
+3. Find k for each integer time since trigger by running find_kNN.py via submit_find_kNN.py.
 
 4. Run kNN_optimal.py to find best k from obj_phase.npy files written in step 3.
-Useful to examine loss in obj.png
-Loss curves are not converged for less than 9 days since trigger
-Overall results are only reliable after 10 days since trigger – hardsetting to 10’s k for earlier times
-
-## Data files for above
-One only needs the training LCs, balltree_AE_*, obj_*, and optimal_kNN files to run. 
-These files are large and therefore not included here but can be made available on request.
+Useful to examine loss in obj.png.
 
 ## Running live
-Simply execute run.py
+Simply run run.py
 
-Results will be placed in a subfolder ZTF/ZTF_%Y-%m-%dT%H%M
+Results will be placed in a subfolder ZTF/ZTF_%Y-%m-%dT%H%M.
 Priority lists are in a deeper subfolder /priority
 
 Note: prioritize_old.py is legacy and will be removed in the future
 
-# Disclaimer:
-While I have tried my best to document all steps to make sure REFITT works on any machine, I have only ever set it up on mine. 
-If you are running into errors following the steps, please do reach out and I will help fix it and push an update. 
-Alternately, if you do end up fixing the issue yourself, please share your fix anyway or send a pull request for the benefit of everyone.
-
 # Notes:
-### Major changes from Sravan+2020:
-- predicting class and forecasting on class
-- loss is error on full forecast
-- Cross corr align
+## Disclaimer:
+Many scripts are written for slurm and will need a bit of work to get to run on PCs
 
-### Future improvements:
-- Forecasts for bright transients and decaying transients is not good
-- System uses LC only - host information would help (redshift+env properties)
+## Data files for above
+One only needs the training LCs, balltree_AE_*, and kNN_optimal.json files to run.
+Some of these files are large and therefore not included but can be made available on request.
+This means you can skip generating the library and training (above).
+
+### Major changes from Sravan+2020:
+- GP fit before putting through Xception
+- predicting class and forecasting on class
+- Cross corr align
+- loss is L1 error on full forecast
 
 ### Laundry list:
-- Use spec class or probabilistic class
+- Forecasts for bright transients and decaying transients is not good
 - Use host info (redshift, offset, morphology)
-
 

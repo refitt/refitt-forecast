@@ -72,6 +72,7 @@ class Transient():
     
     """
     self.status=0
+    ## status different from zero records a known issue where a forecast will fail
     self.ID=ID
     self.out_dir=out_dir
     self.now=current_mjd
@@ -327,7 +328,8 @@ class Transient():
     >>> fname='/path/to/file/ZTF21abcdefg.json' #or 'ZTF21abcdefg.json
     >>> LC=pd.read_json(fname,orient='index').sort_values(by=['mjd'])
     >>> ID=os.path.basename(os.path.splitext(fname)[0])
-    >>> sn=refitt.Transient(ID,LC,'.') #current_mjd= to use a different time
+    >>> out_dir=os.path.dirname(fname)
+    >>> sn=kernel.Transient(ID,LC,out_dir) #,current_mjd= to use a different time
     >>> sn.predict_LC()
 
     """

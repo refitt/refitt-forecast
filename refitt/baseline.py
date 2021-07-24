@@ -1,5 +1,4 @@
 # scan list of events within folder supplied ZTF_YYYY-MM-DD*
-# Note many events in baseline are old
 # report in priority.csv style sorted by mag 
 
 import os, sys, shutil, glob

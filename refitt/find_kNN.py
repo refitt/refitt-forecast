@@ -8,7 +8,7 @@ import os,sys,glob,pdb
 from refitt import defs, kernel
 
 phase=int(sys.argv[1])
-kmax=50
+kmax=30
 k_arr=range(len(defs.lib_classes.keys())+2,kmax+1,1) #min to ensure at least 3 neighbours selected
 objective=np.zeros((len(k_arr),3))
 for i,k in enumerate(k_arr):

@@ -13,7 +13,7 @@ from refitt import defs
 from refitt import kernel
 
 event_folder=str(sys.argv[1]) #full path
-cols=['object','band','moe','mag','mag_err','tpeak','plus_uncer','min_tpeak']
+cols=['object','band','moe','mag','mag_err','tpeak','size_uncer','min_tpeak']
 df=pd.DataFrame(columns=cols)
 for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_folder):
   with open(fname, 'r') as f:
@@ -23,15 +23,14 @@ for fname in glob.glob(event_folder+'/*_prediction.json'):#os.listdir(event_fold
   band_list=kernel.get_band_info(instrument)
   for i,b in enumerate(band_list):
     tpeak=preds['time_to_peak_'+defs.band_name_dict[b]]
-    if (preds['moe']<1. and abs(round(tpeak[0]))<=14.): # meant to be conservative
-      df=pd.concat([df,pd.DataFrame([[preds['ztf_id'],defs.band_name_dict[b],preds['moe'],
+    df=pd.concat([df,pd.DataFrame([[preds['ztf_id'],defs.band_name_dict[b],preds['moe'],
                   preds['next_mag_mean_'+defs.band_name_dict[b]],
                   preds['next_mag_sigma_'+defs.band_name_dict[b]],
                   abs(round(tpeak[0])),abs(round(2*(tpeak[1]-tpeak[2]))/2.),
                   -1.*np.sign(tpeak[2])]],columns=cols]],columns=cols)])
 
 df=df[(df['moe']<0.5) & (df['tpeak']<=7.) & (df['plus_uncer']<=14.)]
-df=df.groupby(['tpeak','plus_uncer','min_tpeak'],sort=True).apply(
+df=df.groupby(['tpeak','size_uncer','min_tpeak'],sort=True).apply(
                                  lambda x: x.sort_values(['moe'])).reset_index(drop=True)
 df.index+=1
 #ordering is import to achieve:
