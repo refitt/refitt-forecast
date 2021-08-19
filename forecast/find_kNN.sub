@@ -1,0 +1,9 @@
+#!/bin/sh -l
+#SBATCH -A refitt
+#SBATCH -N 1
+#SBATCH -n 24
+#SBATCH -t 8-00:00:00
+
+module load anaconda/5.1.0-py36
+source activate /depot/cassiopeia/data/ari/refitt/envs
+cat /depot-new/cassiopeia/data/ari/refitt/refitt/find_kNN_1_list | parallel -j23 {}
