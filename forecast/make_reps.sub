@@ -1,10 +1,11 @@
 #!/bin/sh -l
-#SBATCH -A refitt
+#SBATCH -A standby
 #SBATCH -N 1
 #SBATCH -n 24
-#SBATCH -t 8-00:00:00
+#SBATCH -t 4:00:00
 
-cd /depot-new/cassiopeia/data/ari/refitt/refitt
+cd /depot/cassiopeia/data/ari/refitt-forecast/forecast
 module load anaconda/5.1.0-py36
-source activate /depot/cassiopeia/data/ari/refitt/envs
-cat /depot-new/cassiopeia/data/ari/refitt/refitt/make_reps_list | parallel -j23 {}
+source activate /depot/cassiopeia/data/ari/refitt-forecast/envs
+cat make_reps_list | parallel -j23 {}
+

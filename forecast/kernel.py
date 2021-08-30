@@ -94,6 +94,7 @@ class Transient():
     self.z=None
     self.ra=None
     self.dec=None
+    self.spec_class=None
     self.survey=survey
     if self.status<1:
       try: self.LC_GP=self.fit_GP()

@@ -14,16 +14,16 @@ survey='ZTF_public'
 for phase in range(50,defs.window+1): #defs.horizon
   library_loc=kernel.select_library(survey,phase)
   for c in defs.lib_classes.keys():
-     if not os.path.exists(defs.DATA_PATH+c+'/'+library_loc):
-        os.makedirs(defs.DATA_PATH+c+'/'+library_loc)
-     for event in glob.glob(defs.DATA_PATH+c+'/*.json'):
-        name=(defs.DATA_PATH+c+'/'+library_loc+'/'+
-                os.path.basename(event).split('.')[0]+'_Xception')
-        runs+="python -c \"from forecast import kernel; import pandas as pd; import numpy as np; " 
-        runs+="LC=pd.read_json('"+event+"',orient='index').sort_values(by=['mjd']); "
-        runs+="obj=kernel.Transient('"+event+"',LC,'"+defs.DATA_PATH+c+"/"+library_loc+"',current_mjd=LC['mjd'].min()+"+str(phase)+"); "
-        runs+="obj.create_AE_rep(); "
-        runs+="np.save('"+name+"',obj.AE_rep)\"\n"
+    if not os.path.exists(defs.DATA_PATH+c+'/'+library_loc):
+       os.makedirs(defs.DATA_PATH+c+'/'+library_loc)
+    for event in glob.glob(defs.DATA_PATH+c+'/*.json'):
+       name=(defs.DATA_PATH+c+'/'+library_loc+'/'+
+               os.path.basename(event).split('.')[0]+'_Xception')
+       runs+="python -c \"from forecast import kernel; import pandas as pd; import numpy as np; " 
+       runs+="LC=pd.read_json('"+event+"',orient='index').sort_values(by=['mjd']); "
+       runs+="obj=kernel.Transient('"+event+"',LC,'"+defs.DATA_PATH+c+"/"+library_loc+"',current_mjd=LC['mjd'].min()+"+str(phase)+"); "
+       runs+="obj.create_AE_rep(); "
+       runs+="np.save('"+name+"',obj.AE_rep)\"\n"
 
 with open(dir_path+'/'+sc_name+'_list', 'w') as f:
    f.writelines(runs)
