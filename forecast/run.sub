@@ -7,10 +7,10 @@
 cd /depot/cassiopeia/data/ari/refitt-forecast/forecast
 module load anaconda/5.1.0-py36
 source activate /depot/cassiopeia/data/ari/refitt-forecast/envs
-python get_objects_antares.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-08-30T1007 59456.422
-ls /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-08-30T1007/*.json | parallel -j23 'python kernel.py {}'
-ls /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-08-30T1007/*_prediction.json | parallel -j23 'python make_bandwise_jsons.py {}'
-python baseline.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-08-30T1007 59456.422
-python prioritize_old.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-08-30T1007
-python prioritize_simple.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-08-30T1007
+python get_objects_antares.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-09-26T1200 59483.5
+ls /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-09-26T1200/*.json | parallel -j23 'python kernel.py {}'
+ls /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-09-26T1200/*_prediction.json | parallel -j23 'python make_bandwise_jsons.py {}'
+python baseline.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-09-26T1200 59483.5
+python prioritize_old.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-09-26T1200
+python prioritize_simple.py /depot/cassiopeia/data/ari/refitt-forecast/forecast/ZTF/ZTF_2021-09-26T1200
   

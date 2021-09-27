@@ -125,7 +125,7 @@ class Transient():
       #getattr(pd, f'read_{connector}')(source, **options)
       return cls(ID,LC,out_dir)
   
-  def fit_GP(self,k_corr_scale:float=1.) -> pd.DataFrame:
+  def fit_GP(self,k_corr_scale:float=1.,method='Boone') -> pd.DataFrame:
     """
     fits self.LC with Gaussian Process up to self.now
     """
@@ -136,12 +136,10 @@ class Transient():
     band_pred=get_band_info(self.survey)
     time_arr=np.arange(self.trigger,self.now+defs.resol,defs.resol)
 
-    LC_GP=pd.DataFrame(data=np.vstack((
-                                       np.repeat(time_arr,len(band_pred)),
+    LC_GP=pd.DataFrame(data=np.vstack((np.repeat(time_arr,len(band_pred)),
                                        np.tile(band_pred,len(time_arr))
-                                      )).T,
-                       columns=['mjd','passband'])
-    GP_predict_ts(time,mag,mag_err,passband,LC_GP,k_corr_scale)
+                                      )).T,columns=['mjd','passband'])
+    globals()['GP_'+method](time,mag,mag_err,passband,LC_GP,k_corr_scale)
     return LC_GP
 
   def create_AE_rep(self) -> 'Transient':
@@ -477,7 +475,7 @@ class Transient():
     plt.close()
     return
 
-def GP_predict_ts(time,mag,mag_err,passband,LC_GP,k_corr_scale):
+def GP_Boone(time,mag,mag_err,passband,LC_GP,k_corr_scale):
     def neg_ln_like(p):
       gp.set_parameter_vector(p)
       return -gp.log_likelihood(mag)
@@ -486,7 +484,7 @@ def GP_predict_ts(time,mag,mag_err,passband,LC_GP,k_corr_scale):
       gp.set_parameter_vector(p)
       return -gp.grad_log_likelihood(mag)
 
-    length_scale=20 #changed by J.R.
+    length_scale=20 #guess 
     central_wvl={0:357.0,1:476.7,2:621.5,3:754.5,4:870.75,5:1004.0} #for LSST
     dim=[central_wvl[int(pb)] for pb in passband]
     signal_to_noise_arr=(np.abs(mag)/
@@ -495,11 +493,42 @@ def GP_predict_ts(time,mag,mag_err,passband,LC_GP,k_corr_scale):
     # setup GP model
     kernel=((0.5*scale)**2*george.kernels.Matern32Kernel( #changed by J.R.
                                    [length_scale**2,6000**2], ndim=2))
-    kernel.freeze_parameter('k2:metric:log_M_1_1')
-    kernel.freeze_parameter('k1:log_constant') #Fixed Scale
+    kernel.freeze_parameter('k2:metric:log_M_1_1') #Fixed length scale in wavelength
+    kernel.freeze_parameter('k1:log_constant') #Fixed overvall scale
     x_data=np.vstack([time,dim]).T
     gp=george.GP(kernel,mean=biweight_location(mag)) #changed by J.R.
-    guess_parameters=gp.get_parameter_vector()
+    # train
+    gp.compute(x_data,mag_err)
+    result=minimize(neg_ln_like,
+                    gp.get_parameter_vector(),
+                    jac=grad_neg_ln_like)
+    gp.set_parameter_vector(result.x)
+    #predict
+    ts_pred=np.zeros((LC_GP.shape[0],2))
+    ts_pred[:,0]=LC_GP['mjd']
+    ts_pred[:,1]=LC_GP['passband'].map(central_wvl)*k_corr_scale
+    LC_GP['mag'],mag_var=gp.predict(mag,ts_pred,return_var=True)
+    LC_GP['mag_err']=np.sqrt(mag_var)
+    return
+
+def GP_free(time,mag,mag_err,passband,LC_GP,k_corr_scale): #Slow
+    def neg_ln_like(p):
+      gp.set_parameter_vector(p)
+      return -gp.log_likelihood(mag)
+
+    def grad_neg_ln_like(p):
+      gp.set_parameter_vector(p)
+      return -gp.grad_log_likelihood(mag)
+
+    central_wvl={0:357.0,1:476.7,2:621.5,3:754.5,4:870.75,5:1004.0} #for LSST
+    dim=[central_wvl[int(pb)] for pb in passband]
+    signal_to_noise_arr=(np.abs(mag)/
+                        np.sqrt(mag_err**2+(1e-2*np.max(mag))**2))
+    scale=np.abs(mag[signal_to_noise_arr.argmax()])
+    # setup GP model
+    kernel=((0.5*scale)**2*george.kernels.Matern32Kernel([20**2,6000**2], ndim=2))
+    x_data=np.vstack([time,dim]).T
+    gp=george.GP(kernel,mean=21.5)
     # train
     gp.compute(x_data,mag_err)
     result=minimize(neg_ln_like,

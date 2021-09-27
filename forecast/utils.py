@@ -77,7 +77,7 @@ def fit_Ia_model(meta,LC,spec_z=None):
   from astropy import units as u
   dustmap = sfdmap.SFDMap(defs.DATA_PATH+'/lib_gen/sfddata-master')
   
-  flux,flux_err=utils.get_flux(LC)
+  flux,flux_err=get_flux(LC)
   data=Table()
   data.meta['z']=float(meta['z'])
   data['mjd']=LC['mjd'].tolist()

@@ -53,7 +53,7 @@ def resimulate_GP(meta,LC,sim,z_new,*args):
                                     )).T,
                        columns=['mjd','passband'])
   k_corr_scale=(1.+z_org)/(1.+z_new)
-  kernel.GP_predict_ts(obs_src_time.values,
+  kernel.GP_Boone(obs_src_time.values,
                        LC['mag'].values,
                        LC['mag_err'].values,
                        LC['passband'].values,
