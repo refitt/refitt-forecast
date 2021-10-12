@@ -24,7 +24,7 @@ uncer_param_df=pd.read_pickle('uncer_params.pkl')
 def resimulate_Ia(meta,LC,sim,z_new,ra_new,dec_new):
   success=True
   try:
-    result,fitted_model=utils.fit_Ia_model(meta,LC)
+    result,fitted_model=utils.fit_Ia_model(meta,LC,spec_z=True)
     if result.chisq>300.: success=False
   except RuntimeError:
     success=False

@@ -17,9 +17,13 @@ import matplotlib.gridspec as gridspec
 #support
 #from tslearn import metrics
 import george
+from scipy.stats import wasserstein_distance
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import RBF, ConstantKernel, PairwiseKernel
 from scipy import stats, interpolate, spatial, signal
 from scipy.optimize import minimize
 import itertools
+from astropy import units as u
 from astropy.stats import biweight_location
 from astropy.time import Time
 from datetime import datetime
@@ -511,7 +515,7 @@ def GP_Boone(time,mag,mag_err,passband,LC_GP,k_corr_scale):
     LC_GP['mag_err']=np.sqrt(mag_var)
     return
 
-def GP_free(time,mag,mag_err,passband,LC_GP,k_corr_scale): #Slow
+def GP_free(time,mag,mag_err,passband,LC_GP,k_corr_scale):
     def neg_ln_like(p):
       gp.set_parameter_vector(p)
       return -gp.log_likelihood(mag)
@@ -520,13 +524,14 @@ def GP_free(time,mag,mag_err,passband,LC_GP,k_corr_scale): #Slow
       gp.set_parameter_vector(p)
       return -gp.grad_log_likelihood(mag)
 
-    central_wvl={0:357.0,1:476.7,2:621.5,3:754.5,4:870.75,5:1004.0} #for LSST
+    central_wvl={1:471.70,2:653.74,3:687.20} #for ZTF
     dim=[central_wvl[int(pb)] for pb in passband]
     signal_to_noise_arr=(np.abs(mag)/
                         np.sqrt(mag_err**2+(1e-2*np.max(mag))**2))
     scale=np.abs(mag[signal_to_noise_arr.argmax()])
     # setup GP model
     kernel=((0.5*scale)**2*george.kernels.Matern32Kernel([20**2,6000**2], ndim=2))
+    kernel.freeze_parameter('k1:log_constant') #Fixed overall scale
     x_data=np.vstack([time,dim]).T
     gp=george.GP(kernel,mean=21.5)
     # train
@@ -540,6 +545,69 @@ def GP_free(time,mag,mag_err,passband,LC_GP,k_corr_scale): #Slow
     ts_pred[:,0]=LC_GP['mjd']
     ts_pred[:,1]=LC_GP['passband'].map(central_wvl)*k_corr_scale
     LC_GP['mag'],mag_var=gp.predict(mag,ts_pred,return_var=True)
+    LC_GP['mag_err']=np.sqrt(mag_var)
+    return
+
+def GP_Villar_Cranmer(time,mag,mag_err,passband,LC_GP):
+    ####
+    # Not production ready. Warnings:
+    # A notion of kcorrection not implemented
+    # distance_matrix is queried by passband number so u=1, g=2 and so on.
+    ####
+    import speclite.filters
+    #filters = ['ztf-g','ztf-r','ztf-i']
+    #data = {f: speclite.filters.load_filter(f"{defs.DATA_PATH}{f}.ecsv") for f in filters}
+    filters = 'ugrizy'
+    data = {f: speclite.filters.load_filters(f'lsst2016-{f}')[0] for f in filters}
+    wavelength = np.linspace(3000, 10000, 10000) * u.AA
+    normalized = {f: data[f](wavelength) / data[f](wavelength).sum() for f in filters}
+    
+    def get_distance(filter1, filter2):
+        dist = wasserstein_distance(u_values = wavelength.value, 
+                                    v_values = wavelength.value, 
+                                    u_weights = normalized[filter1], 
+                                    v_weights = normalized[filter2])
+        return dist
+     
+    distance_matrix = np.array([[get_distance(col, row) for col in filters] for row in filters])
+    distance_matrix /= np.average(distance_matrix)
+
+    mag_var = np.var(mag)
+    def metric(x1, x2, p):
+        band1 = (x1[1].astype(int))
+        band2 = (x2[1].astype(int))
+        time_distance = x2[0] - x1[0]
+        photometric_distance = distance_matrix[band1, band2]
+        return (
+            mag_var*np.exp(-photometric_distance**2/(2*p[0]**2) - time_distance**2/(2*p[1]**2))
+            )
+
+    def fit_gp(X, y, p):
+        cur_metric = lambda x1, x2, gamma: metric(x1, x2, p)
+        kernel = PairwiseKernel(metric=cur_metric)
+        gp = GaussianProcessRegressor(kernel=kernel,
+                                    alpha=y[:,1]**2,
+                                    normalize_y=True)
+        gp.fit(X,y[:, 0])
+        return gp
+
+    cX = np.stack((time,passband),axis=1).astype(np.float32)
+    cy = np.stack((mag,mag_err),axis=1).astype(np.float32)
+
+    def try_lt_lp(p):
+        summed_log_like = 0.0
+        gp=fit_gp(cX,cy,p)
+        summed_log_like += gp.log_marginal_likelihood()
+        return -summed_log_like
+ 
+    res = minimize(lambda x: try_lt_lp(np.exp(x)),
+         [2.3, 0.0], bounds = [(-3, 4.5), (-6, 4)])
+    best_lengths = np.exp(res.x)
+    gp=fit_gp(cX,cy,best_lengths)
+    ts_pred=np.zeros((LC_GP.shape[0],2))
+    ts_pred[:,0]=LC_GP['mjd']
+    ts_pred[:,1]=LC_GP['passband']
+    LC_GP['mag'],mag_var=gp.predict(ts_pred,return_std=True)#gp.predict(mag,ts_pred,return_var=True)
     LC_GP['mag_err']=np.sqrt(mag_var)
     return
  

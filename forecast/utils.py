@@ -79,7 +79,7 @@ def fit_Ia_model(meta,LC,spec_z=None):
   
   flux,flux_err=get_flux(LC)
   data=Table()
-  data.meta['z']=float(meta['z'])
+  if spec_z: data.meta['z']=float(meta['z'])
   data['mjd']=LC['mjd'].tolist()
   data['band']=LC['passband'].map(defs.sncosmo_band_name_dict).tolist()
   data['flux']=flux.tolist()
