@@ -69,7 +69,7 @@ def convert_to_mag(df_LC):
   return df_LC.drop(columns=['flux','flux_err'])
 '''
 
-def fit_Ia_model(meta,LC,spec_z=None):
+def fit_Ia_model(meta,LC,spec_z=False):
   import sncosmo
   import sfdmap
   from astropy.table import Table

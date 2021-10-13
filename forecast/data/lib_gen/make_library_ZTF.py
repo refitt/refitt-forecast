@@ -11,14 +11,16 @@ import matplotlib.pyplot as plt
 from scipy import stats
 from joblib import dump, load
 from astropy.coordinates import SkyCoord
+import sfdmap
+dustmap = sfdmap.SFDMap('../sfddata-master')
 
 from forecast import defs,utils,kernel
 
 cls=str(sys.argv[1])
 classes=defs.lib_classes
-kde=load('revisit_kde.joblib')
+revisit=load('revisit_kde.joblib')
 noise=load('noise_kde.joblib')
-samp=pd.read_pickle('sampling.pkl')
+sampling=pd.read_pickle('sampling.pkl')
 uncer_param_df=pd.read_pickle('uncer_params.pkl')
 
 def resimulate_Ia(meta,LC,sim,z_new,ra_new,dec_new):
@@ -74,7 +76,7 @@ sn_list=[]
 for sn in glob.glob(defs.DATA_PATH+'lib_gen/train_lcs/*_meta.json'):
   LC=pd.read_json(sn.split('_meta')[0]+'.json',orient='index')
   if LC[LC['mjd']<LC['mjd'][LC['mag'].idxmin()]].shape[0]==0:
-    continue #conservative elimination
+    continue #need something on the rise to model properly
   with open(sn,'r') as f:
     meta=json.load(f)
   if meta['Type']==cls:
@@ -87,7 +89,7 @@ sim_stats=pd.DataFrame()
 simnum=0
 for i in range(len(classes[cls]['logz_bins'])-1):
   ctr=0
-  while ctr<math.ceil(defs.events_per_bin):
+  while ctr<defs.events_per_bin:
     #pick random event
     sn=np.random.choice(sn_list)
     LC=pd.read_json(sn.split('_meta')[0]+'.json',orient='index').sort_values(by=['mjd'])
@@ -111,13 +113,13 @@ for i in range(len(classes[cls]['logz_bins'])-1):
     sim=pd.DataFrame()
     t=start
     while t-start<defs.window:
-      samp=samp.sample()
+      sample=sampling.sample()
       sim=pd.concat([sim,pd.DataFrame(
-                                      np.array([t+samp['t'].values[0],
-                                      samp['bands'].values[0]]).T
+                                      np.array([t+sample['t'].values[0],
+                                      sample['bands'].values[0]]).T
                                       )
                         ])
-      t+=float(kde.sample())
+      t+=float(revisit.sample())
     sim=sim.rename(columns={0:'mjd',1:'passband'}).sort_values(by=['mjd'])
     #simulate
     sim,success=globals()['resimulate_'+classes[cls]['method']](
